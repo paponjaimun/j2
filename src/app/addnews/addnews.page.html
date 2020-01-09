@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>รายงานข่าว</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label>หัวข้อข่าว:</ion-label>
+        <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>ประเภทข่าว</ion-label>
+        <ion-select interface="popover">
+          <ion-select-option value="nes">ประเภท</ion-select-option>
+          <ion-select-option value="n64">ประเภท</ion-select-option>
+          <ion-select-option value="ps">ประเภท</ion-select-option>
+          <ion-select-option value="genesis">ประเภท</ion-select-option>
+          <ion-select-option value="saturn">ประเภท</ion-select-option>
+          <ion-select-option value="snes">ประเภท</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>ภูมิภาค</ion-label>
+          <ion-select value="" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="brown">เหนือ</ion-select-option>
+            <ion-select-option value="blonde">ใต้</ion-select-option>
+            <ion-select-option value="black">กลาง</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>ประเทศ</ion-label>
+            <ion-select value="" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">ไทย</ion-select-option>
+              <ion-select-option value="blonde">ลาว</ion-select-option>
+              <ion-select-option value="black">พม่า</ion-select-option>
+            </ion-select>
+      </ion-item> 
+      <ion-item>
+        <ion-label>จังหวัด</ion-label>
+          <ion-select value="" okText="Okay" cancelText="Dismiss">
+            <ion-select-option value="brown">เพชรบุรี</ion-select-option>
+            <ion-select-option value="blonde">ราชบุรี</ion-select-option>
+            <ion-select-option value="black">ชลบุรี</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>อำเภอ</ion-label>
+            <ion-select value="" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">อำเภอ1</ion-select-option>
+              <ion-select-option value="blonde">อำเภอ2</ion-select-option>
+              <ion-select-option value="black">อำเภอ3</ion-select-option>
+            </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label>ตำบล</ion-label>
+            <ion-select value="" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">ตำบล1</ion-select-option>
+              <ion-select-option value="blonde">ตำบล2</ion-select-option>
+              <ion-select-option value="black">ตำบล3</ion-select-option>
+            </ion-select>
+      </ion-item>
+      <div id="map" style="width:100%;height:60%;"></div>
+      <!-- <ion-label><b>Latitude</b>{{latitude}}</ion-label>
+      <ion-label><b>Longitude</b>{{longitude}}</ion-label>
+      <ion-label><b>Timestamp</b>{{timestamp}}</ion-label> -->
+      <ion-item>
+          <ion-label position="stacked">รายละเอียดข่าว</ion-label>
+          <ion-textarea rows="5" cols="33"></ion-textarea>
+      </ion-item>
+      <h3 *ngIf="images.length == 0" text-center>Please Select Image!</h3>
+  <ion-list>
+    <ion-item *ngFor="let img of images; index as pos" text-wrap>
+      <ion-thumbnail slot="start">
+        <ion-img [src]="img.path"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        {{ img.name }}
+      </ion-label>
+      <ion-button slot="end" fill="clear" (click)="startUpload(img)">
+        <ion-icon slot="icon-only" name="cloud-upload"></ion-icon>
+      </ion-button>
+      <ion-button slot="end" fill="clear" (click)="deleteImage(img, pos)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+        <ion-button fill="clear" (click)="selectImage()" expand="full">
+          <ion-icon slot="start" name="camera"></ion-icon>
+          Select Image
+        </ion-button>
+      <ion-item>
+          <ion-label>ชั้นความลับ</ion-label>
+            <ion-select value="" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">มาก</ion-select-option>
+              <ion-select-option value="blonde">ปานกลาง</ion-select-option>
+              <ion-select-option value="black">น้อย</ion-select-option>
+            </ion-select>
+      </ion-item>
+      <!-- <ion-item>
+          <ion-label>อนุมัติ</ion-label>
+            <ion-select value="" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">อนุมัติ</ion-select-option>
+              <ion-select-option value="blonde">ไม่อนุมัติ</ion-select-option>
+            </ion-select>
+      </ion-item> -->
+      <ion-row>  
+          <ion-col>   
+            <ion-button expand="block">เพิ่มข่าว</ion-button>  
+          </ion-col> 
+      </ion-row>
+</ion-content>

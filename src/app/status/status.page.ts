@@ -1,0 +1,120 @@
+import { Component, OnInit } from '@angular/core';
+
+import { LoadingController } from '@ionic/angular'; 
+import { Router, ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-status',
+  templateUrl: './status.page.html',
+  styleUrls: ['./status.page.scss'],
+})
+export class StatusPage implements OnInit {
+
+  select: boolean = true;
+  value: boolean = false;
+  select1: boolean = true;
+  value1: boolean = false;
+  select2: boolean = true;
+  value2: boolean = false;
+  user_name: string;
+  datas: any;
+  dataNews: string;
+
+  constructor(
+    private loadingController: LoadingController, 
+    private navCtrl: NavController,
+    public storage: Storage,
+    public http: HttpClient,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
+
+  ngOnInit() {
+  }
+  ionViewWillEnter() {
+    this.select = true;
+    this.value = false;
+    this.select1= true;
+    this.value1 = false;
+    this.select2 = true;
+    this.value2 = false;
+    this.storage.get('username').then((val) => {
+      console.log('Your username is', val);
+      this.user_name = val;
+      if (val == null) {
+        this.router.navigateByUrl('/login');
+        console.log('fail');
+      } else {   
+        this.getdataNews()
+      }
+    });        
+  }
+  async getdataNews() {
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      message: 'กำลังโหลดข้อมูล...'
+    })
+    await loading.present();
+        // let url2:string = "http://localhost/j2/listnewstype.php"
+        let urlgetdata:string = "http://192.168.43.164/j2/getdatanewspagestatus.php"
+        // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
+        let postdataset = new FormData();
+        postdataset.append('user_name',this.user_name);
+        let urlgetdatanews:Observable<any> = this.http.post(urlgetdata, postdataset);
+        urlgetdatanews.subscribe(res =>{
+          console.log(res);
+          if (res == null) {
+              console.log("fail")
+          } else {
+              console.log("succes")
+              this.dataNews = res;
+          }
+        });
+      await loading.dismiss();
+   }
+   shown() {
+    if (this.value === true) {
+      this.select = true;
+      this.value = false;
+    } else {
+      this.select = false;
+      this.value = true;
+    }
+  }
+  shown1() {
+    if (this.value1 === true) {
+      this.select1 = true;
+      this.value1 = false;
+    } else {
+      this.select1 = false;
+      this.value1 = true;
+    }
+  }
+  shown2() {
+    if (this.value2 === true) {
+      this.select2 = true;
+      this.value2 = false;
+    } else {
+      this.select2 = false;
+      this.value2 = true;
+    }
+  }
+  goDetailNotallow(n: any){     
+    console.log(n);   
+    this.navCtrl.navigateForward(['/tabs/status/detailnews', {       
+      news_topic_detail: n.news_topic_detail,
+      news_detail: n.news_detail,
+      news_type_detail: n.news_type_detail,
+      news_time: n.news_time,
+      news_id: n.news_id,
+      news_approve: n.news_approve,
+      news_form_detail: n.news_form_detail,
+      news_upapprove_comment: n.news_upapprove_comment,
+      news_w_user_id: n.news_w_user_id
+    }]);   
+}
+}

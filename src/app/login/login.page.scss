@@ -1,0 +1,116 @@
+// .user-photo ion-avatar {
+//     margin: 0 auto;
+//     width: 120px;
+//     height: 120px;
+//   }
+ion-content{
+    --ion-background-color:#f2f2f7;
+    }
+.background-input {
+    margin-bottom: 0!important;
+    ion-item {
+        --border-color: transparent!important;
+        --highlight-height: 0;
+        --background: none;
+        background: #ffffff;
+        border-radius: 4px;
+        ion-input {
+            --color: #777;
+        }
+    }
+}
+.image {
+  height: 5vw; 
+  width: 5vw; 
+ border: 2px solid #fff;
+ border-radius: 50%;
+ box-shadow: 0 0 5px gray;
+ display: inline-block;
+ margin-left: auto;
+ margin-right: auto;
+}
+
+// .circle-pic{
+//  width:50px;
+//  height:50px;
+//  -webkit-border-radius: 50%;
+//  border-radius: 50%;
+// }
+// .backgroundcolor{
+//   background-color: #323293;
+// }
+// .header {
+//   height: 180px;
+//   background-color: #323293;
+//   width: 100;
+//   padding-top: 1px;
+// }
+// .header h2 {
+//   color: white;
+//   text-align: center;
+//   font-weight: bold;
+// }
+// .img-box {
+//   border-radius: 50%;
+//   overflow: hidden;
+//   height: 130px;
+//   width: 130px;
+// }
+// .border-white {
+//   border: white solid 4px;
+//   border-radius: 50%;
+//   width: fit-content;
+// }
+// .flex {
+//   display: flex;
+//   justify-content: center;
+//   margin-top: -76px;
+// }
+// .Rectangle {
+//   width: 246px;
+//   height: 43px;
+//   border-radius: 4px;
+//   background-color: #323293;
+// }
+.circle-pic{
+ width:50px;
+ height:50px;
+ -webkit-border-radius: 50%;
+ border-radius: 50%;
+}
+.backgroundcolor{
+  background-color: #323293;
+}
+.header {
+  height: 150px;
+  background-color: #323293;
+  width: 100;
+  padding-top: 1px;
+}
+.header h2 {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+}
+.img-box {
+  border-radius: 50%;
+  overflow: hidden;
+  height: 130px;
+  width: 130px;
+}
+.border-white {
+  border: white solid 4px;
+  border-radius: 50%;
+  width: fit-content;
+}
+.flex {
+  display: flex;
+  justify-content: center;
+  margin-top: -76px;
+}
+.Rectangle {
+  width: 246px;
+  height: 43px;
+  border-radius: 4px;
+  background-color: #323293;
+}

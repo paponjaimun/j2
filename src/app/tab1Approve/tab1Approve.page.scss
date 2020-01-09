@@ -1,0 +1,108 @@
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+// .Edit {
+//   background-color: #ffffff;
+//   width: 100%;
+// }
+ion-content{
+  --ion-background-color:#f2f2f7;
+  }
+
+.texts {
+  font-size: 16px;
+	line-height:14pt;
+	height:55pt;
+	overflow:hidden;
+  color: #464646;
+}
+// .item ion-thumbnail {
+//   min-width: 5rem;    
+//   min-height: 5rem;
+//   img {
+//       max-width: 10rem;    
+//       min-width: 5rem;
+//   }
+// }
+img{
+  widows: 5rem;
+  height: 5rem;
+}
+.textcolor{
+  font-family: THSarabunNew;
+  font-size: 16px;
+  // font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  color: #313090;
+}
+.textthai{
+  font-family: THSarabunNew;
+}
+.texttime {
+  font-family: THSarabunNew;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  text-align: right;
+  color: #808080;
+}
+.fixpadding {
+  padding-bottom: 5px;
+}
+ion-card-header {
+  padding-right: 20px;
+  padding-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+}
+
+ion-content{
+  --ion-background-color:#f2f2f7;
+  }
+// .item ion-thumbnail {
+//   min-width: 5rem;    
+//   min-height: 5rem;
+//   img {
+//       max-width: 10rem;    
+//       min-width: 5rem;
+//   }
+// }
+// img {
+//   width: 5rem;    
+//   height: 5rem;
+// }
+.textfonthead {
+  font-size: 22px;
+  // color: #333333;
+}
+.textfontbody {
+  font-size: 16px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  color: #464646;
+}
+.textcolor1{
+  font-size: 16px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  color: #313090;
+}
+.texttimecolor{
+  font-size: 14px;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.11;
+  letter-spacing: normal;
+  color: #808080;
+}

@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-toolbar color="buttonlogin">
+    <ion-title>สถานะ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item (click)="shown()">
+    &nbsp; รออนุมัติ &nbsp; 
+    <!-- <ion-badge color="colorcard">1</ion-badge> -->
+    <ion-icon name="arrow-dropup" slot="end" color="buttonlogin" *ngIf="value"></ion-icon>
+    <ion-icon name="arrow-dropdown" slot="end" color="buttonlogin" *ngIf="select"></ion-icon>
+  </ion-item>
+  <div *ngIf="value">
+    <ng-container *ngFor="let n of dataNews">
+      <ng-container *ngIf="n.news_approve == 0 && n.news_w_user_id == user_name">
+        <ion-card color="colorcard" (click)="goDetailNotallow(n)"> 
+          <ion-row>
+            <ion-col size="9">
+              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:80 }}</ion-card-title>
+            </ion-col>
+            <ion-col size="3">
+              <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
+              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9" class="textfontbody">
+              <div style="padding: 0px 0px 0px 5px;">
+                {{ n.news_detail | slice:0:60 }}
+              </div>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="ion-padding-top" style="padding-left: 9px;"> 
+              <div class="textcolor1">
+                {{n.news_type_detail}}
+              </div>
+            </ion-col>
+            <ion-col size="5" class="texttimecolor ion-text-end" style="padding-top: 18px;"> {{ n.news_time }}</ion-col>
+            <ion-col size="3">
+              <ion-button *ngIf="n.news_approve == 0" size="small" color="danger">
+                รออนุมัติ
+              </ion-button>
+              <ion-button *ngIf="n.news_approve == 2" size="small" color="warning">
+                รออนุมัติ
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <ion-item (click)="shown1()">
+    &nbsp; รอการแก้ไข &nbsp; 
+    <!-- <ion-badge color="colorcard">1</ion-badge> -->
+    <ion-icon name="arrow-dropup" slot="end" color="buttonlogin" *ngIf="value1"></ion-icon>
+    <ion-icon name="arrow-dropdown" slot="end" color="buttonlogin" *ngIf="select1"></ion-icon>
+  </ion-item>
+  <div *ngIf="value1">
+    <ng-container *ngFor="let n of dataNews">
+      <ng-container *ngIf="n.news_approve == 2 && n.news_w_user_id == user_name">
+        <ion-card color="colorcard" (click)="goDetailNotallow(n)"> 
+          <ion-row>
+            <ion-col size="9">
+              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:80 }}</ion-card-title>
+            </ion-col>
+            <ion-col size="3">
+              <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
+              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9" class="textfontbody">
+              <div style="padding: 0px 0px 0px 5px;">
+                {{ n.news_detail | slice:0:60 }}
+              </div>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4" class="ion-padding-top" style="padding-left: 9px;"> 
+              <div class="textcolor1">
+                {{n.news_type_detail}}
+              </div>
+            </ion-col>
+            <ion-col size="5" class="texttimecolor ion-text-end" style="padding-top: 18px;"> {{ n.news_time }}</ion-col>
+            <ion-col size="3">
+              <ion-button *ngIf="n.news_approve == 0" size="small" color="danger">
+                รออนุมัติ
+              </ion-button>
+              <ion-button *ngIf="n.news_approve == 2" size="small" color="warning">
+                รออนุมัติ
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <ion-item (click)="shown2()">
+    &nbsp; ไม่อนุมัติ &nbsp; 
+    <!-- <ion-badge color="colorcard">1</ion-badge> -->
+    <ion-icon name="arrow-dropup" slot="end" color="buttonlogin" *ngIf="value2"></ion-icon>
+    <ion-icon name="arrow-dropdown" slot="end" color="buttonlogin" *ngIf="select2"></ion-icon>
+  </ion-item>
+  <div *ngIf="value2">
+    <ng-container *ngFor="let n of dataNews">
+      <ng-container *ngIf="n.news_approve == 3 && n.news_w_user_id == user_name">
+        <ion-card color="colorcard" (click)="goDetailNotallow(n)"> 
+          <ion-row>
+            <ion-col size="9">
+              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:80 }}</ion-card-title>
+            </ion-col>
+            <ion-col size="3">
+              <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
+              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9" class="textfontbody">
+              <div style="padding: 0px 0px 0px 5px;">
+                {{ n.news_detail | slice:0:60 }}
+              </div>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4"> 
+              <div class="textcolor1" style="padding: 0px 0px 9px 5px;">
+                {{n.news_type_detail}}
+              </div>
+            </ion-col>
+            <ion-col size="8" class="texttimecolor ion-text-end" style="padding-top: 7.5px;"> {{ n.news_time }}</ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+    </ng-container>
+  </div>
+</ion-content>

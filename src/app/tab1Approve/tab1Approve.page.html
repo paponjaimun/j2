@@ -1,0 +1,130 @@
+<ion-header no-border>
+  <ion-toolbar color="buttonlogin">
+      <ion-title>
+          ฟิตข่าว
+      </ion-title>
+  </ion-toolbar> 
+  <ion-toolbar color="colorbackground">  
+      <ion-buttons slot="end" (click)="goFilter()">
+          <ion-button color="buttonlogin"> 
+            <ion-icon name="funnel" slot="icon-only"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+    <ion-searchbar (ionChange)="getItems($event)" debounce="500" placeholder="ค้นหา"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <div class="ion-padding-start ion-padding-top">
+      รออนุมัติ
+  </div>
+  <ng-container *ngFor="let n of datas">
+    <ng-container *ngIf="n.news_approve == 0">
+      <ion-card color="colorcard"   (click)="goDetailNotallow(n)">
+        <ion-card-header>
+          <ion-card-title>{{ n.news_topic_detail }}</ion-card-title>
+        </ion-card-header>
+        <ion-item color="colorcard" lines="none">
+          <ion-thumbnail slot="end">
+            <img *ngIf="n.local_image" [src]="n.local_image">
+          </ion-thumbnail>
+          <div class="texts">
+            {{ n.news_detail }}
+          </div>
+        </ion-item> 
+        <ion-row>
+          <ion-col class="ion-padding-top ion-text-center">
+            <div class="textcolor">
+              {{n.news_type_detail}}
+            </div>
+          </ion-col>
+          <ion-col class="ion-padding-top ion-text-end">
+            <div class="texttime">
+              {{ n.news_time.substring(0,10) | date:'dd/M/yyyy' }}
+            </div>
+          </ion-col>
+          <ion-col class="ion-text-center">
+            <ion-button size="small" color="danger" disabled="true">
+              <div>
+                รออนุมัติ
+              </div>
+            </ion-button>
+          </ion-col>
+        </ion-row> 
+      </ion-card>
+    </ng-container>
+  </ng-container>
+
+  <div class="ion-padding-start">
+          ใหม่ล่าสุด
+  </div>
+  <ng-container *ngFor="let n of datas">
+    <ng-container *ngIf="n.news_approve == 1">
+      <ion-card color="cardcolor2"  (click)="goDetailNotallow(n)">
+        <ion-card-header>
+          <ion-card-title>{{ n.news_topic_detail }}</ion-card-title>
+        </ion-card-header>
+        <ion-item color="cardcolor2" lines="none">
+          <ion-thumbnail slot="end">
+            <img *ngIf="n.local_image" [src]="n.local_image">
+          </ion-thumbnail>
+          <div class="texts">
+              {{ n.news_detail }}
+          </div>
+        </ion-item> 
+        <ion-row class="fixpadding">
+          <ion-col class="ion-text-center">
+            <div class="textcolor">
+              {{n.news_type_detail}}
+            </div>
+          </ion-col>
+          <ion-col class="ion-text-end">
+            <div class="texttime">
+            {{ n.news_time.substring(0,10) | date:'dd/M/yyyy' }}
+            </div>
+          </ion-col>
+          <ion-col>
+          </ion-col>
+        </ion-row>  
+      </ion-card>
+    </ng-container>
+  </ng-container> -->
+
+    <div class="ion-padding-start ion-padding-top">
+      ใหม่ล่าสุด
+    </div>
+    <ng-container *ngFor="let n of datas">
+      <ng-container *ngIf="n.news_approve == 1">
+        <ion-card color="colorcard" (click)="goDetailNotallow(n)">
+          <ion-row>
+            <ion-col size="9">
+              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:40 }}</ion-card-title>
+            </ion-col>
+            <!-- <ion-col size="3">
+              <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;">
+            </ion-col> -->
+            <ion-col size="3" >
+              <ion-img *ngIf="n.images[0].local_image" [src]="n.images[0].local_image" style="padding-top: 9px ;"></ion-img>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9" class="textfontbody">
+              <div style="padding: 0px 0px 0px 5px;">
+                {{ n.news_detail | slice:0:40 }}
+              </div>
+            </ion-col>
+            <ion-col size="3"></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="4"> 
+              <div class="textcolor1" style="padding: 0px 0px 9px 5px;">
+                {{n.news_type_detail}}
+              </div>
+            </ion-col>
+            <ion-col size="8" class="texttimecolor ion-text-end" style="padding-top: 7.5px;"> {{ n.news_time }}</ion-col>
+          </ion-row>
+        </ion-card>
+      </ng-container>
+    </ng-container>
+
+</ion-content>
