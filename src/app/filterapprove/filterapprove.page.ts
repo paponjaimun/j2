@@ -12,4 +12,7 @@ export class FilterapprovePage implements OnInit {
   ngOnInit() {
   }
 
+  datas: any;
+  postdata: any =[];
+
 }

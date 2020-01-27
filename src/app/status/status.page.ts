@@ -20,6 +20,8 @@ export class StatusPage implements OnInit {
   value1: boolean = false;
   select2: boolean = true;
   value2: boolean = false;
+  select3: boolean = true;
+  value3: boolean = false;
   user_name: string;
   datas: any;
   dataNews: string;
@@ -42,6 +44,8 @@ export class StatusPage implements OnInit {
     this.value1 = false;
     this.select2 = true;
     this.value2 = false;
+    this.select3 = true;
+    this.value3 = false;
     this.storage.get('username').then((val) => {
       console.log('Your username is', val);
       this.user_name = val;
@@ -103,6 +107,16 @@ export class StatusPage implements OnInit {
       this.value2 = true;
     }
   }
+  shown3() {
+    if (this.value3 === true) {
+      this.select3 = true;
+      this.value3 = false;
+    } else {
+      this.select3 = false;
+      this.value3 = true;
+    }
+  }
+  
   goDetailNotallow(n: any){     
     console.log(n);   
     this.navCtrl.navigateForward(['/tabs/status/detailnews', {       
@@ -114,7 +128,11 @@ export class StatusPage implements OnInit {
       news_approve: n.news_approve,
       news_form_detail: n.news_form_detail,
       news_upapprove_comment: n.news_upapprove_comment,
-      news_w_user_id: n.news_w_user_id
+      news_w_user_id: n.news_w_user_id,
+      news_weight_detail: n.news_weight_detail
     }]);   
-}
+  }
+  goHome(){
+    this.router.navigateByUrl('/homepage');
+   }
 }

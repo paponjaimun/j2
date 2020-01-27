@@ -37,4 +37,7 @@ export class Tab3Page {
     await loading.dismiss();
     this.router.navigateByUrl('/login');
    }
+   goHome(){
+    this.router.navigateByUrl('/homepage');
+   }
 }

@@ -33,11 +33,11 @@ export class AddnewsPage implements OnInit {
     
       this.platform.ready().then(()=>{
       var mapOptions={
-        center:{lat:23.2366,lng:79.3822},
         zoom:7,
       }
       this.map = new google.maps.Map(document.getElementById("map"),mapOptions);
-      this.GetLocation()    
+      console.log(this.map)
+      this.GetLocation()
     }) 
   }
     GetLocation(){

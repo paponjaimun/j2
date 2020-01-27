@@ -1,0 +1,165 @@
+<div class="colorheadUser" *ngIf="policy_id != 'approvers'">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="ion-text-center">
+        <div class="color-text-header">
+          งานรวบรวมข่าวสาร
+        </div>
+      </ion-title>
+        <ion-buttons slot="primary">
+          <ion-button (click)="goOut()">   
+            <div class="color-text-header">
+              <ion-icon name="exit" slot="icon-only"></ion-icon>
+            </div>
+          </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</div>
+
+<div class="colorheadApprove" *ngIf="policy_id == 'approvers'">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="ion-text-center">
+        <div class="color-text-header">
+          งานรวบรวมข่าวสาร
+        </div>
+      </ion-title>
+        <ion-buttons slot="primary">
+          <ion-button (click)="goOut()">   
+            <div class="color-text-header">
+              <ion-icon name="exit" slot="icon-only"></ion-icon>
+            </div>
+          </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+</div>
+
+<ion-content *ngIf="policy_id == 'approvers'">
+  <ion-grid  style="padding-top: 15%;">
+    <ion-row class="align-items-center">
+      <ion-col size="12">
+          <ion-button class="width-height-full" (click)="onNews()" color="tabsApproveColor">
+              <div>
+                  <ion-icon name='paper' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    ข่าว
+                  </label>
+              </div>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="align-items-center">
+        <!-- <ion-col size="6">
+          <ion-button class="width-height-full" (click)="onStatus()" color="tabsApproveColor">
+              <div>
+                  <ion-icon name='time' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    สถานะ
+                  </label>
+              </div>
+          </ion-button>
+        </ion-col> -->
+        <ion-col size="12">
+          <ion-button class="width-height-full" (click)="onApprove()" color="tabsApproveColor">
+              <div>
+                  <ion-icon name='checkbox-outline' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    อนุมัติ
+                  </label>
+              </div>
+          </ion-button>
+        </ion-col>
+    </ion-row>
+    <ion-row class="align-items-center">
+      <!-- <ion-col size="6">
+        <ion-button class="width-height-full" (click)="onInsertnews()" color="tabsApproveColor">
+            <div>
+                <ion-icon name='add-circle-outline' style="zoom:3;">
+                </ion-icon><br>
+                <label class="font-text-show">รายงานข่าว</label>
+            </div>
+        </ion-button>
+      </ion-col> -->
+      <ion-col size="12">
+        <ion-button class="width-height-full" (click)="onSetting()" color="tabsApproveColor">
+            <div>
+                <ion-icon name='settings' style="zoom:3;">
+                </ion-icon><br>
+                <label class="font-text-show">
+                  ตั้งค่า
+                </label>
+            </div>
+        </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+
+<ion-content *ngIf="policy_id != 'approvers'">
+  <ion-grid  style="padding-top: 15%;">
+    <ion-row class="align-items-center">
+      <ion-col size="12">
+          <ion-button class="width-height-full" (click)="onNews()" color="buttonlogin">
+              <div>
+                  <ion-icon name='paper' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    ข่าว
+                  </label>
+              </div>
+          </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="align-items-center">
+        <ion-col size="12">
+          <ion-button class="width-height-full" (click)="onStatus()" color="buttonlogin">
+              <div>
+                  <ion-icon name='time' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    สถานะ
+                  </label>
+              </div>
+          </ion-button>
+        </ion-col>
+        <!-- <ion-col size="6">
+          <ion-button class="width-height-full" (click)="onApprove()" color="buttonlogin">
+              <div>
+                  <ion-icon name='checkbox-outline' style="zoom:3;">
+                  </ion-icon><br>
+                  <label class="font-text-show">
+                    อนุมัติ
+                  </label>
+              </div>
+          </ion-button>
+        </ion-col> -->
+    </ion-row>
+    <ion-row class="align-items-center">
+      <ion-col size="6">
+        <ion-button class="width-height-full" (click)="onInsertnews()" color="buttonlogin">
+            <div>
+                <ion-icon name='add-circle-outline' style="zoom:3;">
+                </ion-icon><br>
+                <label class="font-text-show">รายงานข่าว</label>
+            </div>
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button class="width-height-full" (click)="onSetting()" color="buttonlogin">
+            <div>
+                <ion-icon name='settings' style="zoom:3;">
+                </ion-icon><br>
+                <label class="font-text-show">
+                  ตั้งค่า
+                </label>
+            </div>
+        </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

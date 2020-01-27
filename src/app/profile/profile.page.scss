@@ -11,3 +11,25 @@ ion-content{
 .textcolor{
     color: #323293;
 }
+
+
+  video {
+      max-width: 100vw;
+      max-height: 40vh;
+  }
+
+  .button-options {
+      text-align: center;
+
+      button {
+          margin: 1rem;
+
+          ion-icon {
+              font-size: 3rem;
+          }
+      }
+  }
+
+  .uploading p {
+      text-align: center;
+  }

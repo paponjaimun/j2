@@ -23,6 +23,8 @@ export class Tab1Page implements OnInit {
   select1: boolean = true;
   value1: boolean = false;
   user_name: string;
+  countrySelect: string;
+  datasShow: any;
 
   constructor(
     private newsService: NewsService, 
@@ -46,11 +48,16 @@ export class Tab1Page implements OnInit {
         console.log('fail');
       }
     });
+    this.countrySelect = null
     this.getNews();
   }
   goFilter(){
     this.router.navigateByUrl('/tabs/tab1/filter');
   }
+
+  goHome(){
+    this.router.navigateByUrl('/homepage');
+   }
 
    async getNews() {
     const loading = await this.loadingController.create({
@@ -64,6 +71,7 @@ export class Tab1Page implements OnInit {
       (news) => {
         console.log(news);
         this.datas = news
+        this.datasShow = news
       },
       async(error) => {
         console.log(error);
@@ -78,7 +86,7 @@ export class Tab1Page implements OnInit {
   getItems(ev: any) {       
     const val = ev.target.value;       
     if (val && val.trim() !== '') {         
-     this.datas = this.datas.filter((datas) => {           
+     this.datasShow = this.datas.filter((datas) => {           
         return (datas.news_topic_detail.toLowerCase().indexOf(val.toLowerCase()) > -1);         
        });       
      } 
@@ -103,22 +111,53 @@ export class Tab1Page implements OnInit {
         news_weight_detail: n.news_weight_detail
       }]);   
   }
-  shown() {
-    if (this.value === true) {
-      this.select = true;
-      this.value = false;
-    } else {
-      this.select = false;
-      this.value = true;
+  // shown() {
+  //   if (this.value === true) {
+  //     this.select = true;
+  //     this.value = false;
+  //   } else {
+  //     this.select = false;
+  //     this.value = true;
+  //   }
+  // }
+  // shown1() {
+  //   if (this.value1 === true) {
+  //     this.select1 = true;
+  //     this.value1 = false;
+  //   } else {
+  //     this.select1 = false;
+  //     this.value1 = true;
+  //   }
+  // }
+  segmentChanged(ev: any) {
+    // this.getNews();
+    const val = ev.target.value;   
+    if (val == '1'){
+      console.log("InC")
+      console.log(val)
+      this.datasShow = this.datas.filter((datas) => {         
+        console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase()))   
+        return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);         
+      });
     }
-  }
-  shown1() {
-    if (this.value1 === true) {
-      this.select1 = true;
-      this.value1 = false;
-    } else {
-      this.select1 = false;
-      this.value1 = true;
+    if (val == '2'){
+      console.log("OutC")
+      console.log(val)
+      this.datasShow = this.datas.filter((datas) => {
+        console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase())) 
+        return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);    
+      }); 
     }
+    // if (val == '') {
+    //   console.log("null")
+    // } else {
+    //   console.log("!null")
+    // }    
+    // this.datas = this.datas.filter((datas) => {         
+    //   console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase()))   
+    //   return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);         
+    // });
+    // console.log(this.datas)  
+    // console.log(this.datasShow)
   }
 }

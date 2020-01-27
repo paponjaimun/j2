@@ -30,7 +30,8 @@ export class DetailnewsPage implements OnInit {
   getimage: any;
   news_weight_detail: string;
   news_name_alias: string;
-  
+  getDetail: any;
+  country_id: string;
   constructor(
     private route: ActivatedRoute,
     public http: HttpClient,
@@ -45,7 +46,6 @@ export class DetailnewsPage implements OnInit {
     this.news_approve = this.route.snapshot.paramMap.get('news_approve');
     this.news_form_detail = this.route.snapshot.paramMap.get('news_form_detail');
     this.news_upapprove_comment = this.route.snapshot.paramMap.get('news_upapprove_comment');
-    this.news_name_alias = this.route.snapshot.paramMap.get('news_name_alias');
     this.news_w_user_id = this.route.snapshot.paramMap.get('news_w_user_id');
     this.news_weight_detail = this.route.snapshot.paramMap.get('news_weight_detail');
   }
@@ -53,13 +53,14 @@ export class DetailnewsPage implements OnInit {
   }
   ionViewWillEnter() {
     this.getImages()
+    this.getDataDetailnews()
   }
   getImages(){
     let datasetpost = new FormData();
     datasetpost.append('news_id', this.news_id);
     console.log(this.value_approve);
-    // let url:string = "http://localhost/j2/approve_status.php"
-    // let url:string = "http://192.168.1.101/j2/approve_status.php"
+    // let url:string = "http://localhost/j2/newdetail_approve_getimage.php"
+    // let url:string = "http://192.168.1.101/j2/newdetail_approve_getimage.php"
     let urlgetimage:string = "http://192.168.43.164/j2/newdetail_approve_getimage.php"
     let image:Observable<any> = this.http.post(urlgetimage, datasetpost);
     image.subscribe(getimage =>{
@@ -67,15 +68,29 @@ export class DetailnewsPage implements OnInit {
       console.log(this.getimage);
     });
   }
+  getDataDetailnews(){
+    let datasetpost1 = new FormData();
+    datasetpost1.append('news_id', this.news_id);
+    console.log(this.value_approve);
+    // let url:string = "http://localhost/j2/getDataDetail.php"
+    // let url:string = "http://192.168.1.101/j2/getDataDetail.php"
+    let urlgetDetail:string = "http://192.168.43.164/j2/getDataDetail.php"
+    let Detail:Observable<any> = this.http.post(urlgetDetail, datasetpost1);
+    Detail.subscribe(getDetail =>{
+      this.getDetail = getDetail
+      console.log(this.getDetail);
+    });
+  }
   edit(){ 
     this.navCtrl.navigateForward(['/tabs/status/detailnews/editnews', {       
-      news_topic_detail: this.news_topic_detail,
-      news_detail: this.news_detail,
-      news_type_detail: this.news_type_detail,
-      news_time: this.news_time,
+      // news_topic_detail: this.news_topic_detail,
+      // news_detail: this.news_detail,
+      // news_type_detail: this.news_type_detail,
+      // news_time: this.news_time,
       news_id: this.news_id,
-      news_form_detail: this.news_form_detail,
-      news_approve: this.news_approve
+      // news_form_detail: this.news_form_detail,
+      // news_approve: this.news_approve,
+      country_id: this.getDetail[0].country_id
     }]);  
   }
   comment() {

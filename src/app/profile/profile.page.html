@@ -72,42 +72,30 @@
       </ion-button>
     </div>
   </ion-card> -->
-  <div class="video-selection" *ngIf="!selectedVideo">
-    <p>Please select a video for upload from your gallery</p>
-    <button ion-button (click)="selectVideo()">Select Video</button>
-  </div>
-  
-  <div class="video-section" *ngIf="selectedVideo">
+   
+  <ion-button (click)="loadGallery()">
+    Click
+  </ion-button>
+  <ion-button (click)="openCamera()">
+    Click me
+  </ion-button>
 
-    <video controls [src]="selectedVideo"></video>
+  <ion-button (click)="openCamera()">
+    Click me
+  </ion-button>
+  <ion-button (click)="selectImage()">
+    Click me
+  </ion-button>
+  <ion-button (click)="capturevideo()">
+    Click me
+  </ion-button>
 
-    <div class="button-options" *ngIf="!uploadedVideo && !isUploading">
-      <button ion-button clear (click)="cancelSelection()">
-        <ion-icon name="close-circle" color="danger"></ion-icon>
-      </button>
-      <button ion-button clear (click)="uploadVideo()">
-        <ion-icon name="checkmark-circle" color="secondary"></ion-icon>
-      </button>
-    </div>
-
-    <div *ngIf="isUploading">
-      <div class="uploading">
-        <p><ion-spinner name="bubbles"></ion-spinner></p>
-        <p>Uploading - {{ uploadPercent }}% Complete</p>
-      </div>
-      <div class="button-options">
-        <button ion-button clear (click)="cancelUpload()">
-          <ion-icon name="close-circle" color="danger"></ion-icon>
-        </button>
-      </div>
-    </div>
-
-    <div class="button-options" *ngIf="uploadedVideo">
-      <button ion-button clear (click)="cancelSelection()">
-        Start Over
-      </button>
-    </div>
-
-  </div>
+  <ion-button (click)="UploadFile()">
+    uploadfile
+  </ion-button>
+  <label><b>{{ uploadText }}</b></label>
+  <ion-button (click)="AbortUpload()">
+  cancel uploading
+  </ion-button>
   
 </ion-content>

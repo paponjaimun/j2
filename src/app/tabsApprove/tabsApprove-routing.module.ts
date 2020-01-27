@@ -7,6 +7,16 @@ const routes: Routes = [
     path: '',
     component: TabsApprovePage,
     children: [
+      // {
+      //   path: 'homepage',
+      //   children: [
+      //     {
+      //       path: '',
+      //       loadChildren: () =>
+      //         import('../homepage/homepage.module').then(m => m.HomepagePageModule)
+      //     }
+      //   ]
+      // },
       {
         path: 'tab1Approve',
         children: [
@@ -48,12 +58,42 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'approve-news',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../approve-news/approve-news.module').then( m => m.ApproveNewsPageModule)
+          }
+        ]
+      },
+      {
         path: 'status-approve/detailnews-approve',
         children: [
           {
             path: '',
             loadChildren: () =>
             import('../detailnews-approve/detailnews-approve.module').then( m => m.DetailnewsApprovePageModule)
+          }
+        ]
+      },
+      {
+        path: 'approve-news/approve-news-detail',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+            import('../approve-news-detail/approve-news-detail.module').then( m => m.ApproveNewsDetailPageModule)
+          }
+        ]
+      },
+      {
+        path: 'approve-news/approve-news-detail/approve-news-detail-edit',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+            import('../approve-news-detail-edit/approve-news-detail-edit.module').then( m =>  m.ApproveNewsDetailEditPageModule)
           }
         ]
       },

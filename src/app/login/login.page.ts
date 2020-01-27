@@ -80,15 +80,27 @@ export class LoginPage implements OnInit {
           if (res[0]["policy_id"] == "approvers") {
             this.storage.set( this.key, this.logindata.username );
             this.storage.set( 'user_department', res[0]["user_department"] );
-            this.navCtrl.navigateForward('/tabsApprove')
+            this.storage.set( 'policy_id', res[0]["policy_id"] );
+            // this.navCtrl.navigateForward('/tabsApprove')
+            this.navCtrl.navigateForward('/homepage')
           }
           if (res[0]["policy_id"] == "user") {
+            this.storage.set( this.key, this.logindata.username );   
+            this.storage.set( 'policy_id', res[0]["policy_id"] );
+            this.navCtrl.navigateForward('/homepage')  
+              // console.log(this.logindata.username);   
+              // this.navCtrl.navigateForward(['/tabs/tab1', {       
+              //   user_name: this.logindata.username, 
+              // }]);   
+            // this.navCtrl.navigateForward('/tabs')
+          }
+          if (res[0]["policy_id"] == "usernormal") {
             this.storage.set( this.key, this.logindata.username );     
               // console.log(this.logindata.username);   
               // this.navCtrl.navigateForward(['/tabs/tab1', {       
               //   user_name: this.logindata.username, 
               // }]);   
-            this.navCtrl.navigateForward('/tabs')
+            this.navCtrl.navigateForward('/tabs-user')
           }
         }
       });
@@ -100,12 +112,12 @@ export class LoginPage implements OnInit {
 
   async presentAlertPrompt() {
     const alert = await this.alertController.create({
-      header: 'การยืนยันตัวตนด้วย OTP!',
+      header: 'การยืนยันตัวตนด้วย PIN!',
       inputs: [
         {
           name: 'name1',
-          type: 'text',
-          placeholder: 'กรอกเลข OTP'
+          type: 'password',
+          placeholder: 'กรอกเลข PIN'
         },
       ],
       buttons: [
@@ -120,6 +132,7 @@ export class LoginPage implements OnInit {
           text: 'Ok',
           handler: () => {
             console.log('Confirm Ok');
+            this.login()
           }
         }
       ]

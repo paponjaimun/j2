@@ -58,6 +58,38 @@ const routes: Routes = [
   {
     path: 'status-approve',
     loadChildren: () => import('./status-approve/status-approve.module').then( m => m.StatusApprovePageModule)
+  },
+  {
+    path: 'tabs-user-news',
+    loadChildren: () => import('./tabs-user-news/tabs-user-news.module').then( m => m.TabsUserNewsPageModule)
+  },
+  {
+    path: 'tabs-user',
+    loadChildren: () => import('./tabs-user/tabs-user.module').then( m => m.TabsUserPageModule)
+  },
+  {
+    path: 'tabs-user-profile',
+    loadChildren: () => import('./tabs-user-profile/tabs-user-profile.module').then( m => m.TabsUserProfilePageModule)
+  },
+  {
+    path: 'tabs-user-detailnews',
+    loadChildren: () => import('./tabs-user-detailnews/tabs-user-detailnews.module').then( m => m.TabsUserDetailnewsPageModule)
+  },
+  {
+    path: 'approve-news',
+    loadChildren: () => import('./approve-news/approve-news.module').then( m => m.ApproveNewsPageModule)
+  },
+  {
+    path: 'approve-news-detail',
+    loadChildren: () => import('./approve-news-detail/approve-news-detail.module').then( m => m.ApproveNewsDetailPageModule)
+  },
+  {
+    path: 'approve-news-detail-edit',
+    loadChildren: () => import('./approve-news-detail-edit/approve-news-detail-edit.module').then( m => m.ApproveNewsDetailEditPageModule)
+  },
+  {
+    path: 'homepage',
+    loadChildren: () => import('./homepage/homepage.module').then( m => m.HomepagePageModule)
   }
 ];
 @NgModule({

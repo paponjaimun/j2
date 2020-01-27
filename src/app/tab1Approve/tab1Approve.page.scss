@@ -25,9 +25,9 @@ ion-content{
 //       min-width: 5rem;
 //   }
 // }
-img{
-  widows: 5rem;
-  height: 5rem;
+img {
+  height: 90px;
+  width: 70px;
 }
 .textcolor{
   font-family: THSarabunNew;
@@ -64,7 +64,7 @@ ion-card-header {
 }
 
 ion-content{
-  --ion-background-color:#f2f2f7;
+  --ion-background-color:#f7f2f2;
   }
 // .item ion-thumbnail {
 //   min-width: 5rem;    
@@ -96,7 +96,7 @@ ion-content{
   font-style: normal;
   line-height: 1.11;
   letter-spacing: normal;
-  color: #313090;
+  color: rgb(212, 21, 21);
 }
 .texttimecolor{
   font-size: 14px;
@@ -105,4 +105,18 @@ ion-content{
   line-height: 1.11;
   letter-spacing: normal;
   color: #808080;
+}
+ion-header ion-toolbar {
+  --background: url("../../assets/img/admin.jpg") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
+}
+ion-segment-button{
+  font-size: 14px;
+  border: 0px;
+  border-radius: 0px;
+}
+.segment-button-checked{
+  font-size: 16px;
 }

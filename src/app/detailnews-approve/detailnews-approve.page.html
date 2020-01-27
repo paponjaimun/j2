@@ -1,9 +1,15 @@
 <ion-header>
-  <ion-toolbar color="buttonlogin">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <div class="color-text-header">
+        <ion-back-button></ion-back-button>
+      </div>
     </ion-buttons>
-    <ion-title>เนื้อหาข่าว</ion-title>
+    <ion-title class="ion-text-center">
+      <div class="color-text-header">
+        เนื้อหาข่าว
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -30,8 +36,8 @@
     <ion-row>
       <!-- <ion-col class="textcolor1">{{ news_type_detail }}</ion-col>
       <ion-col class="ion-text-right textcolor2">{{ news_time | date:'dd/M/yyyy'}}</ion-col> -->
-      <ion-col class="textcolor1" style="padding-left: 11px;">{{ news_type_detail }}</ion-col>
-      <ion-col class="ion-text-right textcolor2" style="padding-right: 11px; padding-top: 14px;">{{ news_time }}</ion-col>
+      <ion-col class="textcolor1" style="padding-left: 11px;" size="5">{{ news_type_detail }}</ion-col>
+      <ion-col class="ion-text-right textcolor2" style="padding-right: 11px; padding-top: 9.5px;"size="7">{{ news_time }}</ion-col>
     </ion-row>        
   </ion-grid>
   <ion-card-content>
@@ -75,55 +81,42 @@
         </ion-col>
       </ion-row>
     </div>
-    <div *ngIf="news_approve == 0 || news_approve == 2">
-    <ion-radio-group>
-          <ion-row>
-            <ion-col>
-                <ion-item lines="none" color="cardcolor2">
-                    <ion-label>อนุมัติ</ion-label>
-                    <ion-radio slot="start" checked color="tertiary" (click)="Nocomment()"></ion-radio>
-                </ion-item>
-            </ion-col>
-            <ion-col>
-                <ion-item lines="none" color="cardcolor2">
-                    <ion-label>ไม่อนุมัติ</ion-label>
-                    <ion-radio slot="start" color="tertiary" (click)="comment()"></ion-radio>
-                </ion-item>
-            </ion-col>
-          </ion-row>    
-    </ion-radio-group>
-    <div *ngIf="select" ></div>
-    <div *ngIf="select" class="ion-padding" >
-      <ion-card-title>
-        ความคิดเห็น
-      </ion-card-title>
-      <br>
-      <div class="box">
-        <ion-textarea placeholder="ความคิดเห็น" autoGrow="true" rows="7" [(ngModel)]="news_upapprove_comment">
-        </ion-textarea>
-      </div>
-      <!-- <ion-item lines="none" color="cardcolor2">
-          <ion-label color="tertiary">
-            ส่งกลับไปแก้ไข
-          </ion-label>
-          <ion-radio slot="start" value="biff" checked color="tertiary"></ion-radio>
-      </ion-item> -->
-      <ion-item lines="none">
-        <ion-checkbox color="tertiary" slot="start" [(ngModel)]="checkbox" (ionChange)="selects($event)"></ion-checkbox>
-        <ion-label>ส่งกลับไปแก้ไข</ion-label>
-      </ion-item>
-    </div>
-      <div class="ion-padding">
-        <ion-button (click)="approve()" expand="block" color="buttonlogin">
-          ยืนยัน
-        </ion-button>
+    <div *ngIf="news_approve == 2">
+      <ion-radio-group>
+            <ion-row>
+              <ion-col>
+                  <ion-item lines="none" color="cardcolor2">
+                      <ion-label>ไม่อนุมัติ</ion-label>
+                      <ion-radio checked slot="start" color="tertiary" (click)="comment()"></ion-radio>
+                  </ion-item>
+              </ion-col>
+            </ion-row>    
+      </ion-radio-group>
+      <div *ngIf="select" ></div>
+      <div *ngIf="select" class="ion-padding" >
+        <ion-card-title>
+          ความคิดเห็น
+        </ion-card-title>
         <br>
-        <div *ngIf="select">
-        <ion-button (click)="edit()" expand="block" color="buttonlogin" fill="outline">
-          แก้ไขข้อมูล
-        </ion-button>
+        <div class="box">
+          <ion-textarea placeholder="ความคิดเห็น" autoGrow="true" rows="7" [(ngModel)]="news_upapprove_comment" disabled="true">
+          </ion-textarea>
         </div>
       </div>
-    </div>
+        <div class="ion-padding">
+          <div *ngIf="select">
+          <ion-button (click)="edit()" expand="block" color="buttonlogin" fill="outline">
+            แก้ไขข้อมูล
+          </ion-button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="news_approve == 0">
+        <div class="ion-padding">
+          <ion-button (click)="edit()" expand="block" color="tabsApproveColor" fill="outline">
+            แก้ไขข้อมูล
+          </ion-button>
+        </div>
+      </div>
   </ion-card>
 </ion-content>

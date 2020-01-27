@@ -29,6 +29,9 @@ export class Tab2Page implements OnInit, OnDestroy {
   dataProvinces: any = [];
   dataAmphures: any = [];
   dataDistricts: any = [];
+  dataNews_country: any = [];
+  data_Continent: any = [];
+  data_Foreign_country: any =[];
   images = [];
   dataNewstype = [];
   dataNews_weight = [];
@@ -52,7 +55,20 @@ export class Tab2Page implements OnInit, OnDestroy {
     private filePath: FilePath, 
     public storage: Storage
     ) {
-      this.platform.ready().then(()=>{
+      this.platform.ready().then(()=>{         
+      // let urlcountry:string = "http://localhost/j2/listcountry.php"
+      let urlcountry:string = "http://192.168.43.164/j2/listcountry.php"
+      // let urlcountry:string = "http://192.168.1.101/j2/listcountry.php"
+      let datacountry:Observable<any> = this.http.post(urlcountry, "");
+      datacountry.subscribe(rescountry =>{
+        console.log(rescountry);
+        if (rescountry == null) {
+          console.log("fail")
+        } else {
+          console.log("succes")
+          this.dataNews_country = rescountry;
+        }
+      });
         // let url:string = "http://localhost/j2/listgeographies.php"
         let url:string = "http://192.168.43.164/j2/listgeographies.php"
         // let url:string = "http://192.168.1.101/j2/listgeographies.php"
@@ -66,19 +82,19 @@ export class Tab2Page implements OnInit, OnDestroy {
             this.dataGeography = res;
           }
         });
-        // let url2:string = "http://localhost/j2/listnewstype.php"
-        let url2:string = "http://192.168.43.164/j2/listnewstype.php"
-        // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
-        let data2:Observable<any> = this.http.post(url2, "");
-        data2.subscribe(res2 =>{
-          console.log(res2);
-          if (res2 == null) {
-            console.log("fail")
-          } else {
-            console.log("succes")
-            this.dataNewstype = res2;
-          }
-        });
+        // // let url2:string = "http://localhost/j2/listnewstype.php"
+        // let url2:string = "http://192.168.43.164/j2/listnewstype.php"
+        // // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
+        // let data2:Observable<any> = this.http.post(url2, "");
+        // data2.subscribe(res2 =>{
+        //   console.log(res2);
+        //   if (res2 == null) {
+        //     console.log("fail")
+        //   } else {
+        //     console.log("succes")
+        //     this.dataNewstype = res2;
+        //   }
+        // });
         // let url3:string = "http://localhost/j2/listweight.php"
         let url3:string = "http://192.168.43.164/j2/listweight.php"
         // let url3:string = "http://192.168.1.101/j2/listweight.php"
@@ -90,6 +106,19 @@ export class Tab2Page implements OnInit, OnDestroy {
           } else {
             console.log("succes")
             this.dataNews_weight = res3;
+          }
+        });       
+        // let url4:string = "http://localhost/j2/getContinent.php" 
+        let url4:string = "http://192.168.43.164/j2/getContinent.php"
+        // let url4:string = "http://192.168.1.101/j2/getContinent.php"
+        let data4:Observable<any> = this.http.post(url4, "");
+        data4.subscribe(res4 =>{
+          console.log(res4);
+          if (res4 == null) {
+            console.log("fail")
+          } else {
+            console.log("succes")
+            this.data_Continent = res4;
           }
         });
       })
@@ -121,20 +150,56 @@ export class Tab2Page implements OnInit, OnDestroy {
     this.postdata.district = null
     this.postdata.country = null
     this.postdata.region = null
-    this.postdata.news_sources = null
-    this.postdata.news_sources = null
-    this.postdata.news_name_alias = null
+    this.postdata.continents_code = null
+    this.postdata.foreign_country = null
+    this.postdata.times = null
+    // this.postdata.news_sources = null
+    // this.postdata.news_sources = null
+    // this.postdata.news_name_alias = null
   }
   ngOnDestroy() {
     this.storage.set(STORAGE_KEY, null);
     console.log(this.storage)
   }
 
+  goHome(){
+    this.router.navigateByUrl('/homepage');
+   }
+
   goAddnew(){
     // this.navCtrl.navigateForward('/addnews');
     console.log(this.images);
     console.log(this.postdata);
   }
+
+  customPopoverCountry: any = {
+    header: 'ประเทศ'
+  };
+  customPopoverType: any = {
+    header: 'ประเภทข่าว'
+  };
+  customPopoverGeo: any = {
+    header: 'ภูมิภาค'
+  };
+  customPopoverPro: any = {
+    header: 'จังหวัด'
+  };
+  customPopoverAm: any = {
+    header: 'อำเภอ/เขต'
+  };
+  customPopoverDes: any = {
+    header: 'ตำบล/แขวง'
+  };
+  customPopoverSc: any = {
+    header: 'ชั้นความลับ'
+  };
+  customPopoverContinent: any = {
+    header: 'ทวีป'
+  };
+  customPopoverForeign_country: any = {
+    header: 'ชื่อประเทศ'
+  }
+
   selectProvinces(event){
     // let url:string = "http://localhost/j2/listprovinces.php"
     let url:string = "http://192.168.43.164/j2/listprovinces.php"
@@ -189,6 +254,24 @@ export class Tab2Page implements OnInit, OnDestroy {
     });
     console.log(event.detail.value);
   }
+  selectContinent(event){
+    // let url:string = "http://localhost/j2/getForeign_country.php"
+    let url:string = "http://192.168.43.164/j2/getForeign_country.php"
+    // let url:string = "http://192.168.1.101/j2/getForeign_country.php"
+    let dataPost = new FormData();
+    dataPost.append('continent_code', event.detail.value);
+    let data:Observable<any> = this.http.post(url, dataPost);
+    data.subscribe(res =>{
+      console.log(res);
+      if (res == null) {
+        console.log("fail")
+      } else {
+        console.log("succes")
+        this.data_Foreign_country= res;
+      }
+    });
+    console.log(event.detail.value);
+  }
 
   //camera
   loadStoredImages() {
@@ -203,6 +286,25 @@ export class Tab2Page implements OnInit, OnDestroy {
         }
       }
     });
+  }
+
+  selectCountry(event){
+    // let url:string = "http://localhost/j2/listnewstype.php"
+    let url:string = "http://192.168.43.164/j2/listnewstype.php"
+    // let url:string = "http://192.168.1.101/j2/listnewstype.php"
+    let dataPost = new FormData();
+    dataPost.append('country_id', event.detail.value);
+    let data:Observable<any> = this.http.post(url, dataPost);
+    data.subscribe(res =>{
+      console.log(res);
+      if (res == null) {
+        console.log("fail")
+      } else {
+        console.log("succes")
+        this.dataNewstype = res;
+      }
+    });
+    console.log(event.detail.value);
   }
  
   pathForImage(img) {
@@ -399,7 +501,10 @@ imageClear(){
     postdataset.append('sub_district_id',this.postdata.district);
     postdataset.append('country_id',this.postdata.country);
     postdataset.append('geography_id',this.postdata.region);
-    postdataset.append('news_name_alias',this.postdata.news_name_alias);
+    postdataset.append('continent',this.postdata.continents_code);
+    postdataset.append('foreign_country',this.postdata.foreign_country);
+    postdataset.append('news_time_occurrence',this.postdata.times = this.postdata.times.slice(0,10)+" "+this.postdata.times.slice(11,19));
+    // postdataset.append('news_name_alias',this.postdata.news_name_alias);
     // postdataset.append('news_upapprove_comment',this.postdata.country);
     console.log(this.postdata);
     let callback:Observable<any> = this.http.post(url,postdataset);

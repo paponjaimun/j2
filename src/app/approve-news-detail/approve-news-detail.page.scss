@@ -1,0 +1,44 @@
+ion-content{
+    --ion-background-color:#f2f2f7;
+    }
+.box {
+  font-family: THSarabunNew;
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px #e0e0e0;
+  background-color: #ffffff;
+}
+.headcolor {
+  background-color: #ffeaea;
+}
+.textcolor{
+  font-size: 18px;
+  color: #a31818;
+}
+.textcolor1{
+  font-size: 18px;
+  color: rgb(212, 21, 21);
+}
+.textcolor2{
+  font-size: 14px;
+  color: #808080;
+}
+.welcome-card img {
+  max-height: 35vh;
+  overflow: hidden;
+}
+.hrcolor {
+  border-top: 1px solid #000000;
+}
+.textfonthead{
+  font-size: 24px;
+ }
+ .textfont{
+  font-size: 16px;
+ }
+ ion-header ion-toolbar {
+  --background: url("../../assets/img/admin.jpg") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
+}

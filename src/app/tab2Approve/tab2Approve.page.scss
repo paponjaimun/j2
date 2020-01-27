@@ -1,6 +1,6 @@
 
 ion-content{
-    --ion-background-color:#f2f2f7;
+    --ion-background-color:#f7f2f2;
     }
 .box {
   font-family: THSarabunNew;
@@ -11,4 +11,10 @@ ion-content{
 }
 .textthai{
     font-family: THSarabunNew;
+}
+ion-header ion-toolbar {
+  --background: url("../../assets/img/admin.jpg") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
 }

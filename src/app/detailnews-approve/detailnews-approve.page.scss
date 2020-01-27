@@ -1,5 +1,5 @@
 ion-content{
-    --ion-background-color:#f2f2f7;
+  --ion-background-color:#f7f2f2;
     }
 .box {
   font-family: THSarabunNew;
@@ -9,15 +9,15 @@ ion-content{
   background-color: #ffffff;
 }
 .headcolor {
-  background-color: #e3e3f0;
+  background-color: #ffeaea;
 }
 .textcolor{
   font-size: 18px;
-  color: #313090;
+  color: #a31818;
 }
 .textcolor1{
   font-size: 18px;
-  color: #313090;
+  color: rgb(212, 21, 21);
 }
 .textcolor2{
   font-size: 14px;
@@ -36,3 +36,9 @@ ion-content{
 .textfonthead{
   font-size: 24px;
  }
+ ion-header ion-toolbar {
+  --background: url("../../assets/img/admin.jpg") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
+}

@@ -24,6 +24,9 @@ export class Tab3ApprovePage {
     // this.router.navigateByUrl('/login');
   //   this.storage.clear();
   // }
+  goHome(){
+    this.router.navigateByUrl('/homepage');
+   }
   async logout() {
     const loading = await this.loadingController.create({
       spinner: 'bubbles',

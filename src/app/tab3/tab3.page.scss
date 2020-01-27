@@ -20,5 +20,11 @@ ion-content{
 font-family: THSarabunNew;
 font-size: 16px;
 }
+ion-header ion-toolbar {
+  --background: url("../../assets/img/rectangle-rectangle-copy-rectangle-mask@3x.png") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
+}
 
 

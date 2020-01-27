@@ -1,8 +1,17 @@
 <ion-header>
-  <ion-toolbar color="buttonlogin">
-    <ion-title>
-      โปรไฟล์
+  <ion-toolbar>
+    <ion-title class="ion-text-center">
+      <div class="color-text-header">
+        โปรไฟล์
+      </div>
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goHome()">
+        <div class="color-text-header">
+          <ion-icon slot="icon-only" name="home"></ion-icon>
+        </div>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +19,7 @@
 
   <ion-card color="cardcolor2">
     <ion-card-header>
-      <ion-card-title>
+      <ion-card-title class="ion-text-center">
         <div class="textcolor">
           ข้อมูลส่วนตัว
         </div>
@@ -23,25 +32,25 @@
     </div>  
       <ion-card-content class="text">
         <ion-row>
-        คำนำหน้า : พลตรี
+        คำนำหน้า : -
         </ion-row>
         <ion-row>
-        ชื่อ-นามสกุล : สมชาย ใจดี
+        ชื่อ-นามสกุล : -
         </ion-row>
         <ion-row>
-        ตำแหน่งปัจจุบัน :
+        ตำแหน่งปัจจุบัน : -
         </ion-row>
         <ion-row>
-        อายุตำแหน่งงานปัจจุบัน : 5 ปี
+        อายุตำแหน่งงานปัจจุบัน : -
         </ion-row>
         <ion-row>
-        วันที่เริ่มดำรงตำแหน่ง : 1 มกราคม 2555
+        วันที่เริ่มดำรงตำแหน่ง : -
         </ion-row>
         <ion-row>
-        อายุงานทั้งหมด : 10 ปั
+        อายุงานทั้งหมด : -
         </ion-row>
       </ion-card-content>
-    <ion-card-header>
+    <!-- <ion-card-header>
       <ion-card-title>
           <ion-row>
               <ion-col>
@@ -54,7 +63,7 @@
                   <ion-icon name="create" color="buttonlogin" class="ion-padding-bottom" strong="true"></ion-icon>
                 </ion-button>
               </ion-col>
-          </ion-row>
+          </ion-row> -->
             <!-- <ion-item lines="none">
                 <ion-icon slot="end" name="create" color="buttonlogin"></ion-icon>
                   <ion-label>
@@ -63,9 +72,9 @@
                     </div>
                   </ion-label>
             </ion-item> -->
-      </ion-card-title>
-    </ion-card-header>  
-      <ion-card-content class="text">
+      <!-- </ion-card-title>
+    </ion-card-header>   -->
+      <!-- <ion-card-content class="text">
         <ion-row>
           อีเมล์ : user@email
         </ion-row>
@@ -76,7 +85,7 @@
           ชื่อผู้ใช้งาน : username
         </ion-row>
       
-      </ion-card-content>
+      </ion-card-content> -->
     <div class="ion-padding">
       <ion-button (click)="logout()" expand="block" color="buttonlogin" fill="outline">
         ออกจากระบบ

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="buttonlogin">
+    <ion-title>โปรไฟล์</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card color="cardcolor2">
+    <ion-card-header>
+      <ion-card-title>
+        <div class="textcolor">
+          ข้อมูลส่วนตัว
+        </div>
+      </ion-card-title>
+    </ion-card-header>
+    <div class="flex">
+      <ion-fab-button color="colorcard" class="main-button">
+        <ion-icon name="camera" class="custom-icon" color="buttonlogin"></ion-icon>
+      </ion-fab-button>
+    </div>  
+      <ion-card-content class="text">
+        <ion-row>
+        คำนำหน้า : -
+        </ion-row>
+        <ion-row>
+        ชื่อ-นามสกุล : -
+        </ion-row>
+        <ion-row>
+        ตำแหน่งปัจจุบัน : -
+        </ion-row>
+        <ion-row>
+        อายุตำแหน่งงานปัจจุบัน : -
+        </ion-row>
+        <ion-row>
+        วันที่เริ่มดำรงตำแหน่ง : -
+        </ion-row>
+        <ion-row>
+        อายุงานทั้งหมด : -
+        </ion-row>
+      </ion-card-content>
+      <div class="ion-padding">
+        <ion-button (click)="logout()" expand="block" color="buttonlogin" fill="outline">
+          ออกจากระบบ
+        </ion-button>
+      </div>
+    </ion-card>
+
+</ion-content>

@@ -1,10 +1,19 @@
 <ion-header>
-  <ion-toolbar color="buttonlogin">
+  <ion-toolbar>
     <ion-buttons slot="secondary">
     </ion-buttons>
-    <ion-title>
-      รายงานข่าว
+    <ion-title class="ion-text-center">
+      <div class="color-text-header">
+        รายงานข่าว
+      </div>
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="goHome()">
+        <div class="color-text-header">
+          <ion-icon slot="icon-only" name="home"></ion-icon>
+        </div>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -19,31 +28,54 @@
       </div>
     </ion-card-content>
     <ion-card-header>
-        <ion-card-title>ประเภทข่าว</ion-card-title>
+      <ion-card-title>กลุ่มข่าว</ion-card-title>
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกประเภทข่าว" [(ngModel)]="postdata.news_type">
-              <ion-select-option *ngFor="let Newstype of dataNewstype" [value]="Newstype.news_type_id">{{Newstype.news_type_detail}}</ion-select-option>
+          <ion-select [interfaceOptions]="customPopoverCountry" placeholder="เลือกประเทศ" [(ngModel)]="postdata.country" (ionChange)="selectCountry($event)">
+            <ion-select-option *ngFor="let Newscountry of dataNews_country" [value]="Newscountry.news_country_id">{{Newscountry.news_country_detail}}</ion-select-option>
           </ion-select>
         </div>
-    </ion-card-content>
+    </ion-card-content>    
     <ion-card-header>
-      <ion-card-title>ประเทศ</ion-card-title>
+      <ion-card-title>ประเภทข่าว</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <div class="box"> 
+        <ion-select [interfaceOptions]="customPopoverType" placeholder="เลือกประเภทข่าว" [(ngModel)]="postdata.news_type">
+            <ion-select-option *ngFor="let Newstype of dataNewstype" [value]="Newstype.news_type_id">{{Newstype.news_type_detail}}</ion-select-option>
+        </ion-select>
+      </div>
+    </ion-card-content>     
+    <div *ngIf="postdata.country == 2">
+      <ion-card-header>
+        <ion-card-title>ทวีป</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกประเทศ" [(ngModel)]="postdata.country">
-            <ion-select-option>ไทย</ion-select-option>
+          <ion-select [interfaceOptions]="customPopoverContinent" placeholder="เลือกทวีป" [(ngModel)]="postdata.continents_code" (ionChange)="selectContinent($event)">
+              <ion-select-option *ngFor="let Continent of data_Continent" [value]="Continent.continents_code">{{Continent.continents_name}}</ion-select-option>
           </ion-select>
         </div>
-    </ion-card-content>
+      </ion-card-content> 
+      <ion-card-header>
+        <ion-card-title>ชื่อประเทศ</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="box"> 
+          <ion-select [interfaceOptions]="customPopoverForeign_country" placeholder="เลือกชื่อประเทศ" [(ngModel)]="postdata.foreign_country">
+              <ion-select-option *ngFor="let Foreign_country of data_Foreign_country" [value]="Foreign_country.country_code">{{Foreign_country.country_name}}</ion-select-option>
+          </ion-select>
+        </div>
+      </ion-card-content>
+    </div>
+    <div *ngIf="postdata.country == 1">
     <ion-card-header>
         <ion-card-title>ภูมิภาค</ion-card-title>
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกภูมิภาค" [(ngModel)]="postdata.region" (ionChange)="selectProvinces($event)">
+          <ion-select [interfaceOptions]="customPopoverGeo" placeholder="เลือกภูมิภาค" [(ngModel)]="postdata.region" (ionChange)="selectProvinces($event)">
             <ion-select-option *ngFor="let Geography of dataGeography" [value]="Geography.geography_id">{{Geography.name}}</ion-select-option>
           </ion-select>
         </div>
@@ -53,7 +85,7 @@
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกจังหวัด" [(ngModel)]="postdata.province" (ionChange)="selectAmphures($event)">
+          <ion-select [interfaceOptions]="customPopoverPro" placeholder="เลือกจังหวัด" [(ngModel)]="postdata.province" (ionChange)="selectAmphures($event)">
               <ion-select-option *ngFor="let Provinces of dataProvinces" [value]="Provinces.province_id">{{Provinces.name_th_province}}</ion-select-option>
           </ion-select>
         </div>
@@ -63,7 +95,7 @@
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกอำเภอ/เขต" [(ngModel)]="postdata.city" (ionChange)="selectDistricts($event)">
+          <ion-select [interfaceOptions]="customPopoverAm" placeholder="เลือกอำเภอ/เขต" [(ngModel)]="postdata.city" (ionChange)="selectDistricts($event)">
             <ion-select-option *ngFor="let Amphures of dataAmphures" [value]="Amphures.district_id">{{Amphures.name_th_amphure}}</ion-select-option>
           </ion-select>
         </div>
@@ -73,20 +105,26 @@
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select placeholder="เลือกตำบล/แขวง" [(ngModel)]="postdata.district">
+          <ion-select [interfaceOptions]="customPopoverDes" placeholder="เลือกตำบล/แขวง" [(ngModel)]="postdata.district">
             <ion-select-option *ngFor="let Districts of dataDistricts" [value]="Districts.sub_district_id">{{Districts.name_th_district}}</ion-select-option>
           </ion-select>
         </div>
     </ion-card-content>   
-    <ion-card-header>
+    </div>
+    <!-- <ion-card-header>
         <ion-card-title>พิกัด</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-button (click)="onClick()" expand="block" fill="outline" color="buttonlogin" size="default">
+      <ion-button (click)="GetLocation()" expand="block" fill="outline" color="buttonlogin" size="default">
         <ion-icon name="pin"></ion-icon>
           ใช้ตำแหน่งปัจจุบันของคุณ
       </ion-button>
-    </ion-card-content>
+      <div id="map" style="width:100%;height:60%;"></div>
+
+      <ion-label><b>Latitude</b> &nbsp;{{latitude}}</ion-label>
+       &nbsp;
+      <ion-label><b>Longitude</b> &nbsp;{{longitude}}</ion-label>
+    </ion-card-content> -->
     <ion-card-header>
         <ion-card-title>รายละเอียด</ion-card-title>
     </ion-card-header>
@@ -130,7 +168,7 @@
         <ion-input placeholder="กรอกแหล่งที่มา" [(ngModel)]="postdata.news_source"></ion-input>
       </div>
     </ion-card-content>
-    <ion-card-header>
+    <!-- <ion-card-header>
         <ion-card-title>ค่าข่าว</ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -146,32 +184,46 @@
             <ion-select-option *ngFor="let News_weight of dataNews_weight" [value]="News_weight.news_weight_id">{{ News_weight.news_weight_detail }}</ion-select-option>
           </ion-select>
         </div>
-    </ion-card-content>
+    </ion-card-content> -->
     <ion-card-header>
         <ion-card-title>ชั้นความลับ</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <div class="box"> 
-        <ion-select placeholder="ความน่าเชื่อถือ" [(ngModel)]="postdata.secret">
+        <ion-select [interfaceOptions]="customPopoverSc" placeholder="ความน่าเชื่อถือ" [(ngModel)]="postdata.secret">
           <ion-select-option value="normal_secret">ลับ</ion-select-option>
           <ion-select-option value="medium_secret">ลับมาก</ion-select-option>
           <ion-select-option value="top_secret">ลับมากที่สุด</ion-select-option>
         </ion-select>
       </div>
     </ion-card-content>
-    <ion-card-header>
+  <ion-card-header>
+      <ion-card-title>เวลาเกิดเหตุ</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <!-- <div class="box"> 
+      <ion-datetime pickerFormat="YYYY MMM DD H:mm" displayFormat="YYYY-MM-DD H:mm" pickerFormat="YYYY MMM DD H:mm" placeholder="เลือกเวลา (ปี-เดือน-วัน ชั่วโมง : นาที)" (ionChange)="selectTime($event)"></ion-datetime>
+    </div> -->
+    <div class="box"> 
+      <ion-datetime pickerFormat="YYYY MMM DD H:mm" displayFormat="YYYY-MM-DD H:mm" pickerFormat="YYYY MMM DD H:mm" placeholder="เลือกเวลา (ปี-เดือน-วัน ชั่วโมง : นาที)" [(ngModel)]="postdata.times"></ion-datetime>
+    </div>
+  </ion-card-content>
+    <!-- <ion-card-header>
       <ion-card-title>รหัสหรือนามแฝง</ion-card-title>
     </ion-card-header>
     <ion-card-content>
     <div class="box"> 
       <ion-input placeholder="รหัสหรือนามแฝง" [(ngModel)]="postdata.news_name_alias"></ion-input>
     </div>
-    </ion-card-content>
+    </ion-card-content> -->
     <div class="ion-padding">
       <ion-button (click)="save()" expand="full" color="buttonlogin">
             บันทึก  
       </ion-button>
     </div>
   </ion-card>
+ <!-- <ion-button (click)="loadGallery()">
+   Click me
+ </ion-button> -->
   
 </ion-content>

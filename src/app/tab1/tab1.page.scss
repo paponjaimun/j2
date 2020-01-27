@@ -10,7 +10,7 @@ ion-content{
   }
 }
 img {
-  height: 70px;
+  height: 80px;
   width: 70px;
 }
 .textfonthead {
@@ -40,4 +40,10 @@ img {
   line-height: 1.11;
   letter-spacing: normal;
   color: #808080;
+}
+ion-header ion-toolbar {
+  --background: url("../../assets/img/rectangle-rectangle-copy-rectangle-mask@3x.png") center / 100%;
+}
+.color-text-header{
+  color: lighten($color: #ffff, $amount: 0);
 }
