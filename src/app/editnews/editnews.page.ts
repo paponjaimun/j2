@@ -148,6 +148,8 @@ export class EditnewsPage implements OnInit,OnDestroy {
         this.postdata.news_w_user_id = resDatanews[0].news_w_user_id
         this.postdata.continents_code = resDatanews[0].continent
         this.postdata.foreign_country = resDatanews[0].country_name
+        this.postdata.location = resDatanews[0].location
+        this.postdata.times = resDatanews[0].news_time_occurrence
       }
     });
     this.getImages()
@@ -292,6 +294,9 @@ export class EditnewsPage implements OnInit,OnDestroy {
       }
     });
     console.log(event.detail.value);
+  }
+  selectTime(event){
+    this.postdata.times = event.detail.value.slice(0,10)+" "+event.detail.value.slice(11,19)
   }
 
   //camera
@@ -471,7 +476,6 @@ deleteImageUrl(img,number){
     postdataset.append('news_approve','0');
     postdataset.append('news_w_user_id', this.postdata.news_w_user_id);
     postdataset.append('news_a_user_id','Null');
-    // postdataset.append('news_a_time',this.postdata.longitude);
     postdataset.append('news_form_id',this.postdata.news_form_id);
     postdataset.append('news_form',this.postdata.news_source);
     postdataset.append('news_secret',this.postdata.secret);
@@ -482,6 +486,8 @@ deleteImageUrl(img,number){
     postdataset.append('geography_id', this.postdata.region);
     postdataset.append('continents_code', this.postdata.continents_code);
     postdataset.append('foreign_country', this.postdata.foreign_country);
+    postdataset.append('location', this.postdata.location);
+    postdataset.append('news_time_occurrence',this.postdata.times);
     console.log(this.postdata);
 
     let callback:Observable<any> = this.http.post(url,postdataset);

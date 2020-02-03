@@ -175,19 +175,19 @@
         <ion-card color="colorcard"  (click)="goDetailNotallow(n)">
           <ion-row>
             <ion-col size="9">
-              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:75 }}</ion-card-title>
+              <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:70 }}</ion-card-title>
             </ion-col>
             <!-- <ion-col size="3">
               <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;">
             </ion-col> -->
             <ion-col size="3" >
-              <img *ngIf="n.images[0].local_image" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="9" class="textfontbody">
               <div style="padding: 0px 0px 0px 5px;">
-                {{ n.news_detail | slice:0:67 }}
+                {{ n.news_detail | slice:0:50 }}
               </div>
             </ion-col>
             <ion-col size="3"></ion-col>
@@ -203,6 +203,7 @@
         </ion-card>
       </ng-container>
     </ng-container>
+    
 <!-- 
     <ng-container *ngFor="let n of datas">
       <ng-container *ngIf="n.news_approve == 1">

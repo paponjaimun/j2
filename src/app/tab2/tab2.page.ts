@@ -36,6 +36,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   dataNewstype = [];
   dataNews_weight = [];
   user_name: string;
+  filevideo:any;
 
   constructor(
     // private navCtrl: NavController, 
@@ -153,6 +154,7 @@ export class Tab2Page implements OnInit, OnDestroy {
     this.postdata.continents_code = null
     this.postdata.foreign_country = null
     this.postdata.times = null
+    this.postdata.location = null
     // this.postdata.news_sources = null
     // this.postdata.news_sources = null
     // this.postdata.news_name_alias = null
@@ -272,6 +274,35 @@ export class Tab2Page implements OnInit, OnDestroy {
     });
     console.log(event.detail.value);
   }
+  selectLocation(event){    
+  // let url:string = "http://localhost/j2/Location_thailand.php"
+  let url:string = "http://192.168.43.164/j2/Location_thailand.php"
+  // let url:string = "http://192.168.1.101/j2/Location_thailand.php"
+  let dataPost = new FormData();
+    
+    let check:any
+    for (check in this.dataDistricts) {
+      if (this.dataDistricts[check].sub_district_id === event.detail.value) {
+        console.log(this.dataDistricts[check].zip_code)
+        dataPost.append('zip_code', this.dataDistricts[check].zip_code);
+        let data:Observable<any> = this.http.post(url, dataPost);
+        data.subscribe(res =>{
+          console.log(res);
+          if (res == null) {
+            console.log("fail")
+          } else {
+            console.log("succes")
+            // this.data_Foreign_country= res;
+            this.postdata.news_lat = res[0].thailand_lat
+            this.postdata.news_long = res[0].thailand_long
+            console.log(this.postdata.news_lat)
+            console.log(this.postdata.news_long)
+          }
+        });
+      }
+    }
+    console.log(event.detail.value);
+  }
 
   //camera
   loadStoredImages() {
@@ -327,28 +358,50 @@ export class Tab2Page implements OnInit, OnDestroy {
 
   async selectImage() {
     const actionSheet = await this.actionSheetController.create({
-        header: "Select Image source",
+        header: "เลือกไฟล์",
         buttons: [{
-                text: 'Load from Library',
+                text: 'รูปภาพจากแกลอรี่',
                 handler: () => {
                     this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
                 }
             },
             {
-                text: 'Use Camera',
+                text: 'ใช้กล้องถ่ายรูป',
                 handler: () => {
                     this.takePicture(this.camera.PictureSourceType.CAMERA);
                 }
             },
             {
-                text: 'Cancel',
+                text: 'ใช้วีดีโอ',
+                handler: () => {
+                  this.takeVideo()
+                }
+            },
+            {
+                text: 'ปิด',
                 role: 'cancel'
             }
         ]
     });
     await actionSheet.present();
 }
- 
+
+takeVideo(){
+  const options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+    mediaType: this.camera.MediaType.VIDEO
+  }
+  
+  this.camera.getPicture(options).then((videoData) => {
+  console.log(videoData)
+  this.filevideo = videoData
+  }, (err) => {
+    console.log(err);
+  });
+}
+
 takePicture(sourceType: PictureSourceType) {
     var options: CameraOptions = {
         quality: 100,
@@ -486,8 +539,8 @@ imageClear(){
     postdataset.append('news_type_id',this.postdata.news_type);
     postdataset.append('news_topic',this.postdata.headline);
     postdataset.append('news_detail',this.postdata.description);
-    postdataset.append('news_lat','100');
-    postdataset.append('news_long','110');
+    postdataset.append('news_lat',this.postdata.news_lat);
+    postdataset.append('news_long',this.postdata.news_long);
     // postdataset.append('news_time', new Date().toLocaleString());
     postdataset.append('news_approve','0');
     postdataset.append('news_w_user_id',this.user_name);
@@ -504,6 +557,7 @@ imageClear(){
     postdataset.append('continent',this.postdata.continents_code);
     postdataset.append('foreign_country',this.postdata.foreign_country);
     postdataset.append('news_time_occurrence',this.postdata.times = this.postdata.times.slice(0,10)+" "+this.postdata.times.slice(11,19));
+    postdataset.append('location',this.postdata.location);
     // postdataset.append('news_name_alias',this.postdata.news_name_alias);
     // postdataset.append('news_upapprove_comment',this.postdata.country);
     console.log(this.postdata);

@@ -105,7 +105,7 @@
     </ion-card-header>
     <ion-card-content>
         <div class="box"> 
-          <ion-select [interfaceOptions]="customPopoverDes" placeholder="เลือกตำบล/แขวง" [(ngModel)]="postdata.district">
+          <ion-select [interfaceOptions]="customPopoverDes" placeholder="เลือกตำบล/แขวง" [(ngModel)]="postdata.district" (ionChange)="selectLocation($event)">
             <ion-select-option *ngFor="let Districts of dataDistricts" [value]="Districts.sub_district_id">{{Districts.name_th_district}}</ion-select-option>
           </ion-select>
         </div>
@@ -126,6 +126,14 @@
       <ion-label><b>Longitude</b> &nbsp;{{longitude}}</ion-label>
     </ion-card-content> -->
     <ion-card-header>
+      <ion-card-title>สถานที่เกิดเหตุ</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="box"> 
+        <ion-input placeholder="กรอกสถานที่เกิดเหตุ" [(ngModel)]="postdata.location"></ion-input>
+      </div>
+    </ion-card-content>
+    <ion-card-header>
         <ion-card-title>รายละเอียด</ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -145,6 +153,10 @@
       </ion-button>
     </ion-card-content>
     <ion-list>
+      <!-- {{ filevideo }}
+      <video width="100%" controls>
+        <source [src]="filevideo" type="video/mp4">
+      </video> -->
       <ion-item *ngFor="let img of images; index as pos" text-wrap>
         <ion-thumbnail slot="start">
           <ion-img [src]="img.path"></ion-img>

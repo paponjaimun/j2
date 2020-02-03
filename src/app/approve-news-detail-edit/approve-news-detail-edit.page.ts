@@ -27,6 +27,9 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   dataProvinces: any = [];
   dataAmphures: any = [];
   dataDistricts: any = [];
+  data_Continent: any = [];
+  dataNews_country: any = [];
+  data_Foreign_country: any = [];
   images = [];
   dataNewstype = [];
   dataNews_weight = [];
@@ -54,7 +57,20 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   ) { 
     this.get_dataBeforepage = this.route.snapshot.paramMap.get('news_id');
     console.log(this.get_dataBeforepage)    
-    // this.platform.ready().then(()=>{
+    // this.platform.ready().then(()=>{      
+       // let urlcountry:string = "http://localhost/j2/listcountry.php"
+      let urlcountry:string = "http://192.168.43.164/j2/listcountry.php"
+      // let urlcountry:string = "http://192.168.1.101/j2/listcountry.php"
+      let datacountry:Observable<any> = this.http.post(urlcountry, "");
+      datacountry.subscribe(rescountry =>{
+        console.log(rescountry);
+        if (rescountry == null) {
+          console.log("fail")
+        } else {
+          console.log("succes")
+          this.dataNews_country = rescountry;
+        }
+      });
       // let url:string = "http://localhost/j2/listgeographies.php"
       let url:string = "http://192.168.43.164/j2/listgeographies.php"
       // let url:string = "http://192.168.1.101/j2/listgeographies.php"
@@ -67,33 +83,33 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
           console.log("succes")
           this.dataGeography = res;
         }
-      });    
-      // let url2:string = "http://localhost/j2/listnewstype.php"
-      let url2:string = "http://192.168.43.164/j2/listnewstype.php"
-      // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
-      let data2:Observable<any> = this.http.post(url2, "");
-      data2.subscribe(res2 =>{
-        console.log(res2);
-        if (res2 == null) {
+      });     
+      // let url4:string = "http://localhost/j2/getContinent.php" 
+      let url4:string = "http://192.168.43.164/j2/getContinent.php"
+      // let url4:string = "http://192.168.1.101/j2/getContinent.php"
+      let data4:Observable<any> = this.http.post(url4, "");
+      data4.subscribe(res4 =>{
+        console.log(res4);
+        if (res4 == null) {
           console.log("fail")
         } else {
           console.log("succes")
-          this.dataNewstype = res2;
+          this.data_Continent = res4;
         }
       });
-      // let url3:string = "http://localhost/j2/listweight.php"
-      let url3:string = "http://192.168.43.164/j2/listweight.php"
-      // let url3:string = "http://192.168.1.101/j2/listweight.php"
-      let data3:Observable<any> = this.http.post(url3, "");
-      data3.subscribe(res3 =>{
-        console.log(res3);
-        if (res3 == null) {
-          console.log("fail")
-        } else {
-          console.log("succes")
-          this.dataNews_weight = res3;
-        }
-      });
+      // // let url2:string = "http://localhost/j2/listnewstype.php"
+      // let url2:string = "http://192.168.43.164/j2/listnewstype.php"
+      // // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
+      // let data2:Observable<any> = this.http.post(url2, "");
+      // data2.subscribe(res2 =>{
+      //   console.log(res2);
+      //   if (res2 == null) {
+      //     console.log("fail")
+      //   } else {
+      //     console.log("succes")
+      //     this.dataNewstype = res2;
+      //   }
+      // });
     // })
     // let urldatanews:string = "http://localhost/j2/getdatapageeditapprove.php"
     let urldatanews:string = "http://192.168.43.164/j2/getdatapageeditapprove.php"
@@ -110,6 +126,9 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
         this.dataAmphures = resDatanews
         this.dataDistricts = resDatanews
         this.dataProvinces = resDatanews
+        this.dataNewstype = resDatanews
+        this.data_Foreign_country = resDatanews
+        this.postdata.country = resDatanews[0].country_id
         this.postdata.headline = resDatanews[0].news_topic_detail
         this.postdata.news_type = resDatanews[0].news_type_id
         this.postdata.description = resDatanews[0].news_detail
@@ -121,13 +140,15 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
         // this.postdata.country = resDatanews[0].news_topic_detail
         // this.postdata.reliability = resDatanews[0].news_topic_detail
         this.postdata.province = resDatanews[0].province_id
-        this.postdata.reliability = resDatanews[0].news_weight_id
-        this.postdata.news_sources = 1
         this.postdata.secret = resDatanews[0].news_secret
         this.postdata.news_topic_id = resDatanews[0].news_topic_id
         this.postdata.news_form_id = resDatanews[0].news_form_id
         this.postdata.local_image = resDatanews[0].local_image
-        this.postdata.news_name_alias = resDatanews[0].news_name_alias
+        this.postdata.news_w_user_id = resDatanews[0].news_w_user_id
+        this.postdata.continents_code = resDatanews[0].continent
+        this.postdata.foreign_country = resDatanews[0].country_name
+        this.postdata.location = resDatanews[0].location
+        this.postdata.times = resDatanews[0].news_time_occurrence
       }
     });
     this.getImages()
@@ -154,7 +175,70 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
       console.log(this.getimage);
     });
   }
+  customPopoverCountry: any = {
+    header: 'ประเทศ'
+  };
+  customPopoverType: any = {
+    header: 'ประเภทข่าว'
+  };
+  customPopoverGeo: any = {
+    header: 'ภูมิภาค'
+  };
+  customPopoverPro: any = {
+    header: 'จังหวัด'
+  };
+  customPopoverAm: any = {
+    header: 'อำเภอ/เขต'
+  };
+  customPopoverDes: any = {
+    header: 'ตำบล/แขวง'
+  };
+  customPopoverSc: any = {
+    header: 'ชั้นความลับ'
+  };
+  customPopoverContinent: any = {
+    header: 'ทวีป'
+  };
+  customPopoverForeign_country: any = {
+    header: 'ชื่อประเทศ'
+  }
   ///Selectinput
+  selectCountry(event){
+    // let url:string = "http://localhost/j2/listnewstype.php"
+    let url:string = "http://192.168.43.164/j2/listnewstype.php"
+    // let url:string = "http://192.168.1.101/j2/listnewstype.php"
+    let dataPost = new FormData();
+    dataPost.append('country_id', event.detail.value);
+    let data:Observable<any> = this.http.post(url, dataPost);
+    data.subscribe(res =>{
+      console.log(res);
+      if (res == null) {
+        console.log("fail")
+      } else {
+        console.log("succes")
+        this.dataNewstype = res;
+      }
+    });
+    console.log(event.detail.value);
+  }
+  selectContinent(event){
+    // let url:string = "http://localhost/j2/getForeign_country.php"
+    let url:string = "http://192.168.43.164/j2/getForeign_country.php"
+    // let url:string = "http://192.168.1.101/j2/getForeign_country.php"
+    let dataPost = new FormData();
+    dataPost.append('continent_code', event.detail.value);
+    let data:Observable<any> = this.http.post(url, dataPost);
+    data.subscribe(res =>{
+      console.log(res);
+      if (res == null) {
+        console.log("fail")
+      } else {
+        console.log("succes")
+        this.data_Foreign_country= res;
+      }
+    });
+    console.log(event.detail.value);
+  }
   selectProvinces(event){
     console.log(event)
     // let url:string = "http://localhost/j2/listprovinces.php"
@@ -209,6 +293,9 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
       }
     });
     console.log(event.detail.value);
+  }
+  selectTime(event){
+    this.postdata.times = event.detail.value.slice(0,10)+" "+event.detail.value.slice(11,19)
   }
 
   //camera
@@ -386,10 +473,8 @@ deleteImageUrl(img,number){
     postdataset.append('news_long','110');
     // postdataset.append('news_time', new Date().toLocaleString());
     postdataset.append('news_approve','0');
-    postdataset.append('news_w_user_id','username');
+    postdataset.append('news_w_user_id', this.postdata.news_w_user_id);
     postdataset.append('news_a_user_id','Null');
-    // postdataset.append('news_a_time',this.postdata.longitude);
-    postdataset.append('news_weight_id',this.postdata.reliability);
     postdataset.append('news_form_id',this.postdata.news_form_id);
     postdataset.append('news_form',this.postdata.news_source);
     postdataset.append('news_secret',this.postdata.secret);
@@ -398,8 +483,10 @@ deleteImageUrl(img,number){
     postdataset.append('sub_district_id',this.postdata.district);
     postdataset.append('country_id',this.postdata.country);
     postdataset.append('geography_id', this.postdata.region);
-    postdataset.append('news_name_alias',this.postdata.news_name_alias);
-    // postdataset.append('news_upapprove_comment',this.postdata.country);
+    postdataset.append('continents_code', this.postdata.continents_code);
+    postdataset.append('foreign_country', this.postdata.foreign_country);
+    postdataset.append('location', this.postdata.location);
+    postdataset.append('news_time_occurrence',this.postdata.times);
     console.log(this.postdata);
 
     let callback:Observable<any> = this.http.post(url,postdataset);

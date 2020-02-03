@@ -17,6 +17,7 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { StreamingMedia } from '@ionic-native/streaming-media/ngx';
  
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -41,6 +42,7 @@ import { IonicStorageModule } from '@ionic/storage';
     FilePath,
     FileTransfer,
     FileChooser,
+    StreamingMedia,
   ],
   bootstrap: [AppComponent]
 })

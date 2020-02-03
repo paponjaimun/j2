@@ -32,7 +32,7 @@
             </ion-col>
             <ion-col size="3">
               <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
-              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>
@@ -80,7 +80,7 @@
             </ion-col>
             <ion-col size="3">
               <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
-              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>
@@ -128,7 +128,7 @@
               <ion-card-title style="padding: 9px 0px 0px 5px;">{{ n.news_topic_detail | slice:0:75 }}</ion-card-title>
             </ion-col>
             <ion-col size="3">
-              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>
@@ -168,7 +168,7 @@
             </ion-col>
             <ion-col size="3">
               <!-- <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;"> -->
-              <img *ngIf="n.images" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>

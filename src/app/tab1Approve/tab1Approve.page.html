@@ -153,7 +153,7 @@
               <img *ngIf="n.local_image" [src]="n.local_image" style="padding-top: 9px ;">
             </ion-col> -->
             <ion-col size="3" >
-              <img *ngIf="n.images[0].local_image" [src]="n.images[0].local_image" style="padding-top: 9px ;">
+              <img *ngIf="n.images != ''" [src]="n.images[0].local_image" style="padding-top: 9px ;">
             </ion-col>
           </ion-row>
           <ion-row>

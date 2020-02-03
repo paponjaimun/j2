@@ -7,13 +7,18 @@
 <ion-content>
 
 </ion-content> -->
-
 <ion-header>
-  <ion-toolbar color="buttonlogin">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <div class="color-text-header">
+        <ion-back-button></ion-back-button>
+      </div>
     </ion-buttons>
-    <ion-title>เนื้อหาข่าว</ion-title>
+    <ion-title class="ion-text-center">
+      <div class="color-text-header">
+        โปรไฟล์
+      </div>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -63,33 +68,10 @@
       <ion-col size="6" style="font-size: 16px;">ผู้รายงาน:&nbsp;{{ news_w_user_id }}</ion-col>
       <ion-col size="6" class="ion-text-end" style="font-size: 16px;">ที่มา:&nbsp;{{ news_form_detail }}</ion-col>
     </ion-row> -->
-    <div class="ion-padding">
-      <!-- news_name_alias
-      <div class="hrcolor ion-text-end ion-padding-top">
-          ที่มา:&nbsp; {{ news_form_detail }}
-      </div> -->
-      <ion-row style="font-size: 16px;">
-        <ion-col size="6" class="hrcolor ion-padding-top">
-          ผู้รายงาน:&nbsp;{{ news_name_alias }}
-        </ion-col>
-        <ion-col size="6" class="hrcolor ion-text-end ion-padding-top"> 
-          ที่มา:&nbsp; {{ news_form_detail }}
-        </ion-col>
+      <ion-row *ngIf="news_approve == 1" class="ion-padding hrcolor">
+        <ion-col size="6" style="font-size: 16px;">ผู้รายงาน:&nbsp;{{ news_w_user_id }}</ion-col>
+        <ion-col size="6" class="ion-text-end" style="font-size: 16px;">ที่มา:&nbsp;{{ news_form_detail }}</ion-col>
       </ion-row>
-      <ion-row style="font-size: 16px;">
-        <ion-col size="6" class="ion-padding-top">
-          ค่าข่าว:&nbsp;ข(เชื่อถือได้)
-        </ion-col>
-        <ion-col size="6" class="ion-text-end ion-padding-top"> 
-          ชั้นความลับ:&nbsp;ลับ
-        </ion-col>
-      </ion-row>
-      <ion-row style="font-size: 16px;">
-        <ion-col size="12" class="ion-padding-top">
-          ความน่าเชื่อถือ:&nbsp; {{ news_weight_detail }}
-        </ion-col>
-      </ion-row>
-    </div>
     <div *ngIf="news_approve == 2">
       <ion-radio-group>
             <ion-row>

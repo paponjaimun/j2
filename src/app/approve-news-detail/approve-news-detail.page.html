@@ -54,32 +54,160 @@
     <br>
       <!-- <ion-img [src]="images" class="ion-padding" style="width: auto; height: auto;"></ion-img> -->
     <!-- </div> -->
-    <div class="ion-padding">
-      <!-- news_name_alias
-      <div class="hrcolor ion-text-end ion-padding-top">
-          ที่มา:&nbsp; {{ news_form_detail }}
+    <ion-row *ngIf="news_approve == 1" class="ion-padding hrcolor">
+      <ion-col size="6" style="font-size: 16px;">ผู้รายงาน:&nbsp;{{ news_w_user_id }}</ion-col>
+      <ion-col size="6" class="ion-text-end" style="font-size: 16px;">ที่มา:&nbsp;{{ news_form_detail }}</ion-col>
+    </ion-row>
+    <div *ngIf="news_approve == 0 || news_approve == 2">
+      <div class="ion-padding">
+        <div *ngFor="let detail of getDetail">
+          <ion-row style="font-size: 16px;">
+            <ion-col class="hrcolor ion-padding-top">
+              ผู้รายงาน
+            </ion-col>
+            <ion-col class="hrcolor ion-padding-top ion-text-end">
+            {{ detail.news_w_user_id }}
+            </ion-col>
+          </ion-row>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              กลุ่มข่าว
+            </ion-col>
+            <ion-col class="ion-text-end">
+              {{ detail.news_country_detail }}
+            </ion-col>
+          </ion-row>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              ประเภทข่าว
+            </ion-col>
+            <ion-col class="ion-text-end">
+              {{ news_type_detail }}
+            </ion-col>
+          </ion-row>
+          <div *ngIf="detail.country_id == 2">
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+                ทวีป
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.continents_name }}
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+                ชื่อประเทศ
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.country_name }}
+              </ion-col>
+            </ion-row>
+          </div>
+          <div *ngIf="detail.country_id == 1">
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+                ภูมิภาค
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.name }}
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+              จังหวัด
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.name_th_province }}
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+                อำเภอ/เขต
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.name_th_amphure }}
+              </ion-col>
+            </ion-row>
+            <ion-row style="font-size: 16px;">
+              <ion-col>
+                ตำบล/แขวง
+              </ion-col>
+              <ion-col class="ion-text-end">
+                {{ detail.name_th_district }}
+              </ion-col>
+            </ion-row>
+          </div>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              แหล่งที่มา
+            </ion-col>
+            <ion-col class="ion-text-end">
+              {{ news_form_detail }}
+            </ion-col>
+          </ion-row>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              ชั้นความลับ
+            </ion-col>
+            <ion-col class="ion-text-end">
+              <div *ngIf="detail.news_secret == 'normal_secret'">ลับ</div>
+              <div *ngIf="detail.news_secret == 'medium_secret'">ลับมาก</div>
+              <div *ngIf="detail.news_secret == 'top_secret'">ลับมากที่สุด</div>
+            </ion-col>
+          </ion-row>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              สถานที่เกิดเหตุ
+            </ion-col>
+            <ion-col class="ion-text-end">
+              {{ detail.location }}
+            </ion-col>
+          </ion-row>
+          <ion-row style="font-size: 16px;">
+            <ion-col>
+              เวลาเกิดเหตุ
+            </ion-col>
+            <ion-col class="ion-text-end">
+              {{ detail.news_time_occurrence }}
+            </ion-col>
+          </ion-row>
+        </div>
+      </div>
+      <div *ngIf="commentDetail != ''">
+        <div class="ion-padding-start ion-padding-end ion-padding-bottom">
+          <ion-button (click)="eventDropdown()" color="danger">
+            ประวัติการแก้ไข
+            <ion-icon name="arrow-dropdown" slot="end" *ngIf="Dropdown1"></ion-icon>
+            <ion-icon name="arrow-dropup" slot="end" *ngIf="Dropdown2"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <div *ngIf="Dropdown1">
+        <div *ngFor="let comment of commentDetail">
+          <div class="ion-padding-start ion-padding-end">
+            <ion-item lines="none">
+              <ion-label>{{ comment.comment_time }}</ion-label>
+            </ion-item>
+            <div class="box">
+              <ion-textarea autoGrow="true" disabled placeholder="{{ comment.comment_detail }}">
+              </ion-textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div *ngFor="let comment of commentDetail">
+          <div class="ion-padding-top ion-padding-start ion-padding-end">
+            <ion-item lines="none" (click)="eventDropdown()">
+              <ion-label>{{ comment.comment_time }}</ion-label>
+              <ion-icon name="arrow-dropdown" slot="end" *ngIf="Dropdown1"></ion-icon>
+              <ion-icon name="arrow-dropup" slot="end" *ngIf="Dropdown2"></ion-icon>
+            </ion-item>
+            <div class="box" *ngIf="Dropdown1">
+              <ion-textarea autoGrow="true" disabled placeholder="{{ comment.comment_detail }}">
+              </ion-textarea>
+            </div>
+          </div>
       </div> -->
-      <ion-row style="font-size: 16px;">
-        <ion-col size="6" class="hrcolor ion-padding-top">
-          ผู้รายงาน:&nbsp;{{ news_name_alias }}
-        </ion-col>
-        <ion-col size="6" class="hrcolor ion-text-end ion-padding-top"> 
-          ที่มา:&nbsp; {{ news_form_detail }}
-        </ion-col>
-      </ion-row>
-      <ion-row style="font-size: 16px;">
-        <ion-col size="6" class="ion-padding-top">
-          ค่าข่าว:&nbsp;ข(เชื่อถือได้)
-        </ion-col>
-        <ion-col size="6" class="ion-text-end ion-padding-top"> 
-          ชั้นความลับ:&nbsp;ลับ
-        </ion-col>
-      </ion-row>
-      <ion-row style="font-size: 16px;">
-        <ion-col size="12" class="ion-padding-top">
-          ความน่าเชื่อถือ:&nbsp; {{ news_weight_detail }}
-        </ion-col>
-      </ion-row>
     </div>
     <div *ngIf="news_approve == 0 || news_approve == 2">
     <ion-radio-group>

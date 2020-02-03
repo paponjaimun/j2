@@ -1,4 +1,4 @@
-<ion-header no-border>
+<!-- <ion-header no-border>
   <ion-toolbar color="buttonlogin">
       <ion-title>
           ฟิตข่าว
@@ -12,13 +12,51 @@
       </ion-buttons>
     <ion-searchbar (ionChange)="getItems($event)" debounce="500" placeholder="ค้นหา"></ion-searchbar>
   </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="logOut()">
+        <div class="color-text-header">
+          <ion-icon slot="icon-only" name="exit"></ion-icon>
+        </div>
+      </ion-button>
+    </ion-buttons>
+    <ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="countrySelect" color="light">
+      <ion-segment-button value="1">
+        <div class="color-text-header">
+          ในประเทศ
+        </div>
+      </ion-segment-button>
+      <ion-segment-button value="2">
+        <div class="color-text-header">
+          ต่างประเทศ
+        </div>
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goFilter()">
+        <span>
+          <div class="color-text-header">
+            <ion-icon slot="icon-only" name="options"></ion-icon>
+          </div>
+        </span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-searchbar (ionChange)="getItems($event)" placeholder="ค้นหา"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
 
   <div class="ion-padding-start ion-padding-top">
     ใหม่ล่าสุด
   </div>
-    <ng-container *ngFor="let n of datas">
+    <ng-container *ngFor="let n of datasShow">
       <ng-container *ngIf="n.news_approve == 1">
         <ion-card color="colorcard"  (click)="goDetailNotallow(n)">
           <ion-row>

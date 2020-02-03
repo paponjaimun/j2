@@ -3,8 +3,11 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { File } from '@ionic-native/File/ngx';
+import { StreamingMedia, StreamingVideoOptions } from '@ionic-native/streaming-media/ngx';
 // import { NavController, AlertController, LoadingController, Platform, ActionSheetController, ToastController,} from '@ionic/angular';
-// import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/Camera/ngx';
+import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/Camera/ngx';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 // import { File, FileEntry } from '@ionic-native/File/ngx';
 // import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 // import { WebView } from '@ionic-native/ionic-webview/ngx';
@@ -32,13 +35,17 @@ export class ProfilePage implements OnInit {
   uploadText:any;
   downloadText:any;
   fileTransfer:FileTransferObject;
+  filevideo:any;
+  
   constructor(
     private transfer:FileTransfer,
     private file:File,
     private filePath:FilePath,
-    private fileChooser:FileChooser
+    private fileChooser:FileChooser,
+    private streamingMedia: StreamingMedia,
     // public navCtrl: NavController,
-    // private camera: Camera,
+    private camera: Camera,
+    public http: HttpClient,
     // private transfer: FileTransfer, 
     // private file: File,
     // private alertCtrl: AlertController, 
@@ -62,57 +69,91 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
   }
+  Playvideo(){
+    let options: StreamingVideoOptions = {
+      successCallback: () => { console.log('Video played') },
+      errorCallback: (e) => { console.log(e) },
+      shouldAutoClose: true,
+      controls: true
+    };
+    this.streamingMedia.playVideo(this.filevideo, options);
+  }
   
-  // UploadFile(){
-  //   this.fileChooser.open().then((uri)=>{
-  //     console.log(uri)
-  //     this.filePath.resolveNativePath(uri).then((nativepath)=>{
-  //         console.log(nativepath)
-  //         this.fileTransfer = this.transfer.create();
-  //         let options:FileUploadOptions={
-  //           fileKey:'video_upload_file',
-  //           fileName:'video.mp4',
-  //           chunkedMode:false,
-  //           httpMethod: 'post',
-  //           headers:{},
-  //           mimeType:'video/mp4'
-  //         }
-  //         this.uploadText = "uploading...."
-  //         this.fileTransfer.upload(nativepath, 'http://192.168.43.164/j2/testvideo.php' , options).then((data)=>{
-  //           alert("tranfer done = "+JSON.stringify(data));
-  //           console.log(data)
-  //           this.uploadText = "";
-  //         },(err)=>{
-  //           this.uploadText = "";
-  //           console.log(err)
-  //           alert(JSON.stringify(err));
-  //         })
-  //       },(err)=>{
-  //         console.log(err)
-  //         alert(JSON.stringify(err));
-  //       })
-  //   },(err)=>{
-  //     alert(JSON.stringify(err));
-  //   })
-  // }
+  openvideo(){
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType: this.camera.MediaType.VIDEO
+    }
+    
+    this.camera.getPicture(options).then((imageData) => {
+    // imageData is either a base64 encoded string or a file URI
+    // If it's base64 (DATA_URL):
+    console.log(imageData)
+    this.filevideo = imageData
+    let base64Image = 'data:image/jpeg;base64,' + imageData;
+    console.log(base64Image);
+    }, (err) => {
+      console.log(err);
+    // Handle error
+    });
+  }
 
-  // AbortUpload(){
-  //   this.fileTransfer.abort();
-  //   alert("upload cancel.");
-  // }
+  UploadFile(){
+    let filter = { "mime": "video/mp4" }
+    // let filter = { "mime": "application/pdf" }
+    this.fileChooser.open(filter).then((uri)=>{
+      console.log(uri)
+      this.filePath.resolveNativePath(uri).then((nativepath)=>{
+          console.log(nativepath)
+          this.fileTransfer = this.transfer.create();
+          let options:FileUploadOptions={
+            fileKey:'video_upload_file',
+            fileName:'video.mp4',
+            chunkedMode:false,
+            httpMethod: 'post',
+            headers:{},
+            mimeType:'video/mp4'
+          }
+          this.uploadText = "uploading...."
+          this.fileTransfer.upload(nativepath, 'http://192.168.43.164/j2/testvideo.php' , options).then((data)=>{
+            alert("tranfer done = "+JSON.stringify(data));
+            console.log(data)
+            this.uploadText = "";
+          },(err)=>{
+            this.uploadText = "";
+            console.log(err)
+            alert(JSON.stringify(err));
+          })
+        },(err)=>{
+          console.log(err)
+          alert(JSON.stringify(err));
+        })
+    },(err)=>{
+      alert(JSON.stringify(err));
+    })
+  }
 
+  AbortUpload(){
+    this.fileTransfer.abort();
+    alert("upload cancel.");
+  }
 
-
-
-
-
-
-
-
-
-
-
-
+  getMap(){
+  let url:string = "http://api.giscloud.com/1/maps"
+  let data:Observable<any> = this.http.get(url);
+  data.subscribe(res =>{
+    console.log(res);
+    // if (res == null) {
+    //   console.log("fail")
+    // } else {
+    //   console.log("succes")
+    // }
+  });
+  }
+  
+  
  
   // loadGallery() {                 // select video from gallery
   //   var options = {

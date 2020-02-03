@@ -120,7 +120,15 @@
         <ion-icon name="pin"></ion-icon>
           ใช้ตำแหน่งปัจจุบันของคุณ
       </ion-button>
-    </ion-card-content> -->
+    </ion-card-content> -->    
+    <ion-card-header>
+      <ion-card-title>สถานที่เกิดเหตุ</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="box"> 
+        <ion-input placeholder="กรอกสถานที่เกิดเหตุ" [(ngModel)]="postdata.location"></ion-input>
+      </div>
+    </ion-card-content>
     <ion-card-header>
         <ion-card-title>รายละเอียด</ion-card-title>
     </ion-card-header>
@@ -196,7 +204,19 @@
             <ion-select-option value="top_secret">ลับมากที่สุด</ion-select-option>
           </ion-select>
         </div>
+    </ion-card-content>    
+    <ion-card-header>
+      <ion-card-title>เวลาเกิดเหตุ</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- <div class="box"> 
+        <ion-datetime pickerFormat="YYYY MMM DD H:mm" displayFormat="YYYY-MM-DD H:mm" pickerFormat="YYYY MMM DD H:mm" placeholder="เลือกเวลา (ปี-เดือน-วัน ชั่วโมง : นาที)" (ionChange)="selectTime($event)"></ion-datetime>
+      </div> -->
+      <div class="box"> 
+        <ion-datetime pickerFormat="YYYY MMM DD H:mm" displayFormat="YYYY-MM-DD H:mm" pickerFormat="YYYY MMM DD H:mm" placeholder="เลือกเวลา (ปี-เดือน-วัน ชั่วโมง : นาที)" [(ngModel)]="postdata.times" (ionChange)="selectTime($event)"></ion-datetime>
+      </div>
     </ion-card-content>
+    
     <div class="ion-padding">
       <ion-button (click)="save()" expand="full" color="buttonlogin">
             บันทึก  

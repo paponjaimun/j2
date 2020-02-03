@@ -22,6 +22,8 @@ export class TabsUserNewsPage implements OnInit {
   select1: boolean = true;
   value1: boolean = false;
   user_name: string;
+  datasShow: any;
+  countrySelect: string;
   constructor(
     private newsService: NewsService, 
     private loadingController: LoadingController, 
@@ -44,6 +46,7 @@ export class TabsUserNewsPage implements OnInit {
         console.log('fail');
       }
     });
+    this.countrySelect = null
     this.getNews();
   }
   goFilter(){
@@ -62,6 +65,7 @@ export class TabsUserNewsPage implements OnInit {
       (news) => {
         console.log(news);
         this.datas = news
+        this.datasShow = news
       },
       async(error) => {
         console.log(error);
@@ -76,7 +80,7 @@ export class TabsUserNewsPage implements OnInit {
   getItems(ev: any) {       
     const val = ev.target.value;       
     if (val && val.trim() !== '') {         
-     this.datas = this.datas.filter((datas) => {           
+     this.datasShow = this.datas.filter((datas) => {           
         return (datas.news_topic_detail.toLowerCase().indexOf(val.toLowerCase()) > -1);         
        });       
      } 
@@ -120,4 +124,45 @@ export class TabsUserNewsPage implements OnInit {
     }
   }
 
+  segmentChanged(ev: any) {
+    // this.getNews();
+    const val = ev.target.value;   
+    if (val == '1'){
+      console.log("InC")
+      console.log(val)
+      this.datasShow = this.datas.filter((datas) => {         
+        console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase()))   
+        return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);         
+      });
+    }
+    if (val == '2'){
+      console.log("OutC")
+      console.log(val)
+      this.datasShow = this.datas.filter((datas) => {
+        console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase())) 
+        return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);    
+      }); 
+    }
+    // if (val == '') {
+    //   console.log("null")
+    // } else {
+    //   console.log("!null")
+    // }    
+    // this.datas = this.datas.filter((datas) => {         
+    //   console.log(datas.country_id.toLowerCase().indexOf(val.toLowerCase()))   
+    //   return (datas.country_id.toLowerCase().indexOf(val.toLowerCase()) > -1);         
+    // });
+    // console.log(this.datas)  
+    // console.log(this.datasShow)
+  }
+  async logOut() {
+    const loading = await this.loadingController.create({
+      spinner: 'bubbles',
+      message: 'กำลังโหลดข้อมูล...'
+  })
+    await loading.present();
+    this.storage.clear();
+    await loading.dismiss();
+    this.router.navigateByUrl('/login');
+  }
 }
