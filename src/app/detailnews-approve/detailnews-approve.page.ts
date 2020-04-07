@@ -83,7 +83,8 @@ export class DetailnewsApprovePage implements OnInit {
     datasetpost.append('news_id', this.news_id);
     // let url:string = "http://localhost/j2/approve_status.php"
     // let url:string = "http://192.168.1.101/j2/approve_status.php"
-    let urlgetimage:string = "http://192.168.43.164/j2/newdetail_approve_getimage.php"
+    // let urlgetimage:string = "http://192.168.43.164/j2/newdetail_approve_getimage.php"
+    let urlgetimage:string = "http://multiinno.name/j2/newdetail_approve_getimage.php"
     let image:Observable<any> = this.http.post(urlgetimage, datasetpost);
     image.subscribe(getimage =>{
       this.getimage = getimage
@@ -117,7 +118,8 @@ export class DetailnewsApprovePage implements OnInit {
     console.log(this.value_approve);
     // let url:string = "http://localhost/j2/approve_status.php"
     // let url:string = "http://192.168.1.101/j2/approve_status.php"
-    let url:string = "http://192.168.43.164/j2/approve_status.php"
+    let url:string = "http://multiinno.name/j2/approve_status.php"
+    // let url:string = "http://192.168.43.164/j2/approve_status.php"
     let callback:Observable<any> = this.http.post(url, dataPost);
     callback.subscribe(call =>{
       console.log(call);

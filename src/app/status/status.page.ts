@@ -64,7 +64,7 @@ export class StatusPage implements OnInit {
     })
     await loading.present();
         // let url2:string = "http://localhost/j2/listnewstype.php"
-        let urlgetdata:string = "http://192.168.43.164/j2/getdatanewspagestatus.php"
+        let urlgetdata:string = "http://multiinno.name/j2/getdatanewspagestatus.php"
         // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
         let postdataset = new FormData();
         postdataset.append('user_name',this.user_name);

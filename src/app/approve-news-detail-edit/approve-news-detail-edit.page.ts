@@ -59,7 +59,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
     console.log(this.get_dataBeforepage)    
     // this.platform.ready().then(()=>{      
        // let urlcountry:string = "http://localhost/j2/listcountry.php"
-      let urlcountry:string = "http://192.168.43.164/j2/listcountry.php"
+      let urlcountry:string = "http://multiinno.name/j2/listcountry.php"
       // let urlcountry:string = "http://192.168.1.101/j2/listcountry.php"
       let datacountry:Observable<any> = this.http.post(urlcountry, "");
       datacountry.subscribe(rescountry =>{
@@ -72,7 +72,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
         }
       });
       // let url:string = "http://localhost/j2/listgeographies.php"
-      let url:string = "http://192.168.43.164/j2/listgeographies.php"
+      let url:string = "http://multiinno.name/j2/listgeographies.php"
       // let url:string = "http://192.168.1.101/j2/listgeographies.php"
       let data:Observable<any> = this.http.post(url, "");
       data.subscribe(res =>{
@@ -85,7 +85,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
         }
       });     
       // let url4:string = "http://localhost/j2/getContinent.php" 
-      let url4:string = "http://192.168.43.164/j2/getContinent.php"
+      let url4:string = "http://multiinno.name/j2/getContinent.php"
       // let url4:string = "http://192.168.1.101/j2/getContinent.php"
       let data4:Observable<any> = this.http.post(url4, "");
       data4.subscribe(res4 =>{
@@ -98,7 +98,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
         }
       });
       // // let url2:string = "http://localhost/j2/listnewstype.php"
-      // let url2:string = "http://192.168.43.164/j2/listnewstype.php"
+      // let url2:string = "http://multiinno.name/j2/listnewstype.php"
       // // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
       // let data2:Observable<any> = this.http.post(url2, "");
       // data2.subscribe(res2 =>{
@@ -112,7 +112,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
       // });
     // })
     // let urldatanews:string = "http://localhost/j2/getdatapageeditapprove.php"
-    let urldatanews:string = "http://192.168.43.164/j2/getdatapageeditapprove.php"
+    let urldatanews:string = "http://multiinno.name/j2/getdatapageeditapprove.php"
     // let urldatanews:string = "http://192.168.1.101/j2/getdatapageeditapprove.php"
     let postdataset = new FormData();
     postdataset.append('news_id', this.get_dataBeforepage);
@@ -167,7 +167,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
     datasetpost.append('news_id', this.get_dataBeforepage);
     // let url:string = "http://localhost/j2/approve_status.php"
     // let url:string = "http://192.168.1.101/j2/approve_status.php"
-    let urlgetimage:string = "http://192.168.43.164/j2/newdetail_approve_getimage.php"
+    let urlgetimage:string = "http://multiinno.name/j2/newdetail_approve_getimage.php"
     let imageload:Observable<any> = this.http.post(urlgetimage, datasetpost);
     imageload.subscribe(resimg =>{
       this.getimage = resimg;
@@ -205,7 +205,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   ///Selectinput
   selectCountry(event){
     // let url:string = "http://localhost/j2/listnewstype.php"
-    let url:string = "http://192.168.43.164/j2/listnewstype.php"
+    let url:string = "http://multiinno.name/j2/listnewstype.php"
     // let url:string = "http://192.168.1.101/j2/listnewstype.php"
     let dataPost = new FormData();
     dataPost.append('country_id', event.detail.value);
@@ -223,7 +223,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   }
   selectContinent(event){
     // let url:string = "http://localhost/j2/getForeign_country.php"
-    let url:string = "http://192.168.43.164/j2/getForeign_country.php"
+    let url:string = "http://multiinno.name/j2/getForeign_country.php"
     // let url:string = "http://192.168.1.101/j2/getForeign_country.php"
     let dataPost = new FormData();
     dataPost.append('continent_code', event.detail.value);
@@ -242,7 +242,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   selectProvinces(event){
     console.log(event)
     // let url:string = "http://localhost/j2/listprovinces.php"
-    let url:string = "http://192.168.43.164/j2/listprovinces.php"
+    let url:string = "http://multiinno.name/j2/listprovinces.php"
     // let url:string = "http://192.168.1.101/j2/listprovinces.php"
     let dataPost = new FormData();
     dataPost.append('geography_id', event.detail.value);
@@ -260,7 +260,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   }
   selectAmphures(event){
     // let url:string = "http://localhost/j2/listamphures.php"
-    let url:string = "http://192.168.43.164/j2/listamphures.php"
+    let url:string = "http://multiinno.name/j2/listamphures.php"
     // let url:string = "http://192.168.1.101/j2/listamphures.php"
     let dataPost = new FormData();
     dataPost.append('province_id', event.detail.value);
@@ -278,7 +278,7 @@ export class ApproveNewsDetailEditPage implements OnInit,OnDestroy {
   }
   selectDistricts(event){
     // let url:string = "http://localhost/j2/listdistricts.php"
-    let url:string = "http://192.168.43.164/j2/listdistricts.php"
+    let url:string = "http://multiinno.name/j2/listdistricts.php"
     // let url:string = "http://192.168.1.101/j2/listdistricts.php"
     let dataPost = new FormData();
     dataPost.append('district_id', event.detail.value);
@@ -461,7 +461,7 @@ deleteImageUrl(img,number){
     });
     await loading.present();
     // let url = 'http://localhost/j2/editdatapageeditapprove.php';
-    let url = 'http://192.168.43.164/j2/editdatapageeditapprove.php';
+    let url = 'http://multiinno.name/j2/editdatapageeditapprove.php';
     // let url = 'http://192.168.1.101/j2/editdatapageeditapprove.php';
     let postdataset = new FormData();
     postdataset.append('news_id',this.get_dataBeforepage);
@@ -531,7 +531,7 @@ deleteImageUrl(img,number){
   //   await loading.present();
 
   uploadImageData(formData: FormData) {
-  this.http.post("http://192.168.43.164/j2/editimage.php", formData)
+  this.http.post("http://multiinno.name/j2/editimage.php", formData)
   // this.http.post("http://192.168.1.101/j2/editimage.php", formData)
         // .pipe(
         //     finalize(() => {
@@ -550,7 +550,7 @@ deleteImageUrl(img,number){
   deleteandinsert(){
     if (this.getimage.length != this.lengthimage) {
       console.log("!=")
-      let urldelete = 'http://192.168.43.164/j2/deleteimage.php';
+      let urldelete = 'http://multiinno.name/j2/deleteimage.php';
       let data_news_id = new FormData();
       data_news_id.append('news_id',this.get_dataBeforepage);
       console.log(this.postdata);
@@ -567,7 +567,7 @@ deleteImageUrl(img,number){
   }
   insertimgs(){
         for(var imgbefore of this.getimage){
-        let insertdata = 'http://192.168.43.164/j2/insertimge_1.php';
+        let insertdata = 'http://multiinno.name/j2/insertimge_1.php';
         let data_insert = new FormData();
         data_insert.append('news_id', this.get_dataBeforepage);
         data_insert.append('local_image', imgbefore.local_image);

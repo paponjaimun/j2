@@ -61,7 +61,7 @@ export class DetailnewsPage implements OnInit {
     console.log(this.value_approve);
     // let url:string = "http://localhost/j2/newdetail_approve_getimage.php"
     // let url:string = "http://192.168.1.101/j2/newdetail_approve_getimage.php"
-    let urlgetimage:string = "http://192.168.43.164/j2/newdetail_approve_getimage.php"
+    let urlgetimage:string = "http://multiinno.name/j2/newdetail_approve_getimage.php"
     let image:Observable<any> = this.http.post(urlgetimage, datasetpost);
     image.subscribe(getimage =>{
       this.getimage = getimage
@@ -74,7 +74,7 @@ export class DetailnewsPage implements OnInit {
     console.log(this.value_approve);
     // let url:string = "http://localhost/j2/getDataDetail.php"
     // let url:string = "http://192.168.1.101/j2/getDataDetail.php"
-    let urlgetDetail:string = "http://192.168.43.164/j2/getDataDetail.php"
+    let urlgetDetail:string = "http://multiinno.name/j2/getDataDetail.php"
     let Detail:Observable<any> = this.http.post(urlgetDetail, datasetpost1);
     Detail.subscribe(getDetail =>{
       this.getDetail = getDetail

@@ -117,6 +117,7 @@ export class ProfilePage implements OnInit {
             mimeType:'video/mp4'
           }
           this.uploadText = "uploading...."
+          // this.fileTransfer.upload(nativepath, 'http://multiinno.name/j2/testvideo.php' , options).then((data)=>{
           this.fileTransfer.upload(nativepath, 'http://192.168.43.164/j2/testvideo.php' , options).then((data)=>{
             alert("tranfer done = "+JSON.stringify(data));
             console.log(data)

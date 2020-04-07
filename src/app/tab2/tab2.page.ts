@@ -58,7 +58,7 @@ export class Tab2Page implements OnInit, OnDestroy {
     ) {
       this.platform.ready().then(()=>{         
       // let urlcountry:string = "http://localhost/j2/listcountry.php"
-      let urlcountry:string = "http://192.168.43.164/j2/listcountry.php"
+      let urlcountry:string = "http://multiinno.name/j2/listcountry.php"
       // let urlcountry:string = "http://192.168.1.101/j2/listcountry.php"
       let datacountry:Observable<any> = this.http.post(urlcountry, "");
       datacountry.subscribe(rescountry =>{
@@ -71,7 +71,7 @@ export class Tab2Page implements OnInit, OnDestroy {
         }
       });
         // let url:string = "http://localhost/j2/listgeographies.php"
-        let url:string = "http://192.168.43.164/j2/listgeographies.php"
+        let url:string = "http://multiinno.name/j2/listgeographies.php"
         // let url:string = "http://192.168.1.101/j2/listgeographies.php"
         let data:Observable<any> = this.http.post(url, "");
         data.subscribe(res =>{
@@ -84,7 +84,7 @@ export class Tab2Page implements OnInit, OnDestroy {
           }
         });
         // // let url2:string = "http://localhost/j2/listnewstype.php"
-        // let url2:string = "http://192.168.43.164/j2/listnewstype.php"
+        // let url2:string = "http://multiinno.name/j2/listnewstype.php"
         // // let url2:string = "http://192.168.1.101/j2/listnewstype.php"
         // let data2:Observable<any> = this.http.post(url2, "");
         // data2.subscribe(res2 =>{
@@ -97,7 +97,7 @@ export class Tab2Page implements OnInit, OnDestroy {
         //   }
         // });
         // let url3:string = "http://localhost/j2/listweight.php"
-        let url3:string = "http://192.168.43.164/j2/listweight.php"
+        let url3:string = "http://multiinno.name/j2/listweight.php"
         // let url3:string = "http://192.168.1.101/j2/listweight.php"
         let data3:Observable<any> = this.http.post(url3, "");
         data3.subscribe(res3 =>{
@@ -110,7 +110,7 @@ export class Tab2Page implements OnInit, OnDestroy {
           }
         });       
         // let url4:string = "http://localhost/j2/getContinent.php" 
-        let url4:string = "http://192.168.43.164/j2/getContinent.php"
+        let url4:string = "http://multiinno.name/j2/getContinent.php"
         // let url4:string = "http://192.168.1.101/j2/getContinent.php"
         let data4:Observable<any> = this.http.post(url4, "");
         data4.subscribe(res4 =>{
@@ -204,7 +204,7 @@ export class Tab2Page implements OnInit, OnDestroy {
 
   selectProvinces(event){
     // let url:string = "http://localhost/j2/listprovinces.php"
-    let url:string = "http://192.168.43.164/j2/listprovinces.php"
+    let url:string = "http://multiinno.name/j2/listprovinces.php"
     // let url:string = "http://192.168.1.101/j2/listprovinces.php"
     let dataPost = new FormData();
     dataPost.append('geography_id', event.detail.value);
@@ -222,7 +222,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   }
   selectAmphures(event){
     // let url:string = "http://localhost/j2/listamphures.php"
-    let url:string = "http://192.168.43.164/j2/listamphures.php"
+    let url:string = "http://multiinno.name/j2/listamphures.php"
     // let url:string = "http://192.168.1.101/j2/listamphures.php"
     let dataPost = new FormData();
     dataPost.append('province_id', event.detail.value);
@@ -240,7 +240,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   }
   selectDistricts(event){
     // let url:string = "http://localhost/j2/listdistricts.php"
-    let url:string = "http://192.168.43.164/j2/listdistricts.php"
+    let url:string = "http://multiinno.name/j2/listdistricts.php"
     // let url:string = "http://192.168.1.101/j2/listdistricts.php"
     let dataPost = new FormData();
     dataPost.append('district_id', event.detail.value);
@@ -258,7 +258,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   }
   selectContinent(event){
     // let url:string = "http://localhost/j2/getForeign_country.php"
-    let url:string = "http://192.168.43.164/j2/getForeign_country.php"
+    let url:string = "http://multiinno.name/j2/getForeign_country.php"
     // let url:string = "http://192.168.1.101/j2/getForeign_country.php"
     let dataPost = new FormData();
     dataPost.append('continent_code', event.detail.value);
@@ -276,7 +276,7 @@ export class Tab2Page implements OnInit, OnDestroy {
   }
   selectLocation(event){    
   // let url:string = "http://localhost/j2/Location_thailand.php"
-  let url:string = "http://192.168.43.164/j2/Location_thailand.php"
+  let url:string = "http://multiinno.name/j2/Location_thailand.php"
   // let url:string = "http://192.168.1.101/j2/Location_thailand.php"
   let dataPost = new FormData();
     
@@ -321,7 +321,7 @@ export class Tab2Page implements OnInit, OnDestroy {
 
   selectCountry(event){
     // let url:string = "http://localhost/j2/listnewstype.php"
-    let url:string = "http://192.168.43.164/j2/listnewstype.php"
+    let url:string = "http://multiinno.name/j2/listnewstype.php"
     // let url:string = "http://192.168.1.101/j2/listnewstype.php"
     let dataPost = new FormData();
     dataPost.append('country_id', event.detail.value);
@@ -532,7 +532,7 @@ imageClear(){
     });
   await loading.present();
   // let url = 'http://localhost/j2/insertnews.php';
-    let url = 'http://192.168.43.164/j2/insertnews.php';
+    let url = 'http://multiinno.name/j2/insertnews.php';
     // let url = 'http://192.168.1.101/j2/insertnews.php';
     let postdataset = new FormData();
     // postdataset.append('news_id',this.postdata.headline);
@@ -603,7 +603,7 @@ imageClear(){
   //   });
   //   await loading.present();
     uploadImageData(formData: FormData) {
-    this.http.post("http://192.168.43.164/j2/insertimage.php", formData)
+    this.http.post("http://multiinno.name/j2/insertimage.php", formData)
     // this.http.post("http://192.168.1.101/j2/insertimage.php", formData)
         // .pipe(
         //     finalize(() => {

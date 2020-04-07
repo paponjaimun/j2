@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
       console.log("username:",this.logindata.username);
       console.log("password:",this.logindata.password);
       // let url:string = "http://192.168.1.101/j2/login.php"
-      let url:string = "http://192.168.43.164/j2/login.php"
+      let url:string = "http://multiinno.name/j2/login.php"
       // let url:string = "http://localhost/j2/login.php"
       let dataPost = new FormData();
       dataPost.append('user',this.logindata.username);
